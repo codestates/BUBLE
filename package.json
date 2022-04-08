@@ -1,0 +1,30 @@
+{
+  "name": "buble",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codestates/BUBLE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codestates/BUBLE/issues"
+  },
+  "homepage": "https://github.com/codestates/BUBLE#readme",
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.1",
+    "sequelize": "^6.18.0"
+  },
+  "description": ""
+}
