@@ -1,2 +1,3 @@
-const db = require('../../models/index');
-console.log(db);
+module.exports = async (req, res) => {
+  res.send('signin');
+};

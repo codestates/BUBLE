@@ -5,7 +5,15 @@ module.exports = {
     signup: require('./user/signup'),
   },
   order: {
-    get: require('./order/get'),
-    post: require('./order/post'),
+    get: {
+      buy: require('./order/get/buy'),
+      sell: require('./order/get/sell'),
+      borrow: require('./order/get/borrow'),
+    },
+    post: {
+      buy: require('./order/post/buy'),
+      sell: require('./order/post/sell'),
+      borrow: require('./order/post/borrow'),
+    },
   },
 };
