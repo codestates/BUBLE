@@ -24,5 +24,6 @@ export default function App() {
       <Button>Normal</Button>
       <Button primary>Primary</Button>
       <IS>Tomato</IS>
+      <Loding/>
     </div>
   )}
