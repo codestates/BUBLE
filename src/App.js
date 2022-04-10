@@ -1,29 +1,31 @@
-import Loding from './component/Loding'
-import styled from "styled-component"
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import axios from 'axios';
+import Loding from './component/Loding';
+import styled from 'styled-components';
+import Footer from "./components/Footer";
 
-const Button = styled.button`
-  /* Adapt the colors based on primary prop */
-  background: ${(props) => (props.primary ? "palevioletred" : "white")};
-  color: ${(props) => (props.primary ? "white" : "palevioletred")};
+const test = styled.div`
+  position: relative;
+  margin-top: 8rem;
+  left: 47%;
+  cursor: pointer;
+`
 
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
+function App() {
+  const [token, setToken] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-const IS = styled(Button)`
-  color: tomato;
-  border-color: tomato;
-`;
-
-export default function App() {
   return (
     <div className="App">
-      <Button>Normal</Button>
-      <Button primary>Primary</Button>
-      <IS>Tomato</IS>
-      <Loding/>
+    {isLoading && <Loding/>}
+     
     </div>
   )}
+
+export default App
+
+
+
+
