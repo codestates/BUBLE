@@ -3,35 +3,27 @@ const { user } = require('../../models/index');
 module.exports = async (req, res) => {
   const { userName, phoneNumber, favBrand, email, password } = req.body;
 
-  const createUser = await user.create({
-    userName: userName,
-    phoneNumber: phoneNumber,
-    favBrand: favBrand,
-    email: email,
-    password: password,
+  const exists = await user.findOne({
+    where: { email: email, password: password },
   });
 
-  console.log(createUser.dataValues);
+  if (exists.isNewRecord) {
+    const createUser = await user.create({
+      userName: userName,
+      phoneNumber: phoneNumber,
+      favBrand: favBrand,
+      email: email,
+      password: password,
+    });
 
-  res.json({
-    data: createUser.dataValues,
-  });
+    // console.log(createUser.dataValues);
 
-  // res.cookies('refreshToken', refreshToken).send(
-  //   { data : {
-  //       "id": PK,
-  //       "user_name": "user_name",
-  //       "email": "email",
-  //       "password": "password",
-  //       "phone_number": "phone_number",
-  //       "fav_brand" : "fav_brand",
-  //       "createdAt": "created time",
-  //       "updatedAt": "updated time"
-  //   },
-  //   accessToken: accessToken}
-  //   )
+    return res.status(201).json({
+      data: createUser.dataValues,
+    });
+  } else {
+    return res.status(409).json('이미 회원가입한 사용자입니다.');
+  }
 
-  //cookie에 refreshToken (보안)
-  //state에 accessToken (expire)
-  //logout 시 delete all tokens
+  // return res.status(500).json('Internal Server Error');
 };

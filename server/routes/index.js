@@ -4,7 +4,7 @@ const userRouter = require('./user');
 const orderRouter = require('./order');
 
 router.use('/user', userRouter);
-router.use('/order/:userId', orderRouter);
+router.use('/order', orderRouter);
 
 //router로 모든 /items 경로에 대해
 
