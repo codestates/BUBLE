@@ -3,7 +3,7 @@ name: "[Dev-Log] name / date"
 about: Suggest an idea for this project
 title: "[Dev-Log] name / date"
 labels: Dev Log
-assignees: nicky0830, almond-flavoured, minheock, ghooman
+assignees: almond-flavoured, ghooman, minheock, nicky0830
 
 ---
 
