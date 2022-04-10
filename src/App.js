@@ -1,7 +1,14 @@
+import Footer from "./components/Footer";
+
 function App() {
-  return <div>ghooman</div>;
+  return (
+    <div>
+      <Footer />
+    </div>
+  );
 }
-function min(){
-  return ;
-}
+
 export default App;
+
+
+//style={{ maxWidth: "100%" }}
