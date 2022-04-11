@@ -1,4 +1,4 @@
-const { isAuthorized, verifyToken } = require('../../tokenFunctions');
+const { isAuthorized } = require('../../tokenFunctions');
 const { user } = require('../../../models');
 const { buyHistory } = require('../../../models');
 
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     }
   } else {
     if (token === false) {
-      return res.status(400).send('invalid token');
+      return res.status(401).send('invalid token');
     } else if (token === null) {
       return res.status(401).send('not logged in');
     }
