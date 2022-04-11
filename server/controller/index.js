@@ -16,4 +16,10 @@ module.exports = {
       borrow: require('./order/post/borrow'),
     },
   },
+  item: {
+    item: require('./item'),
+  },
+  like: {
+    like: require('./like'),
+  },
 };
