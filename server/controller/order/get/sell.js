@@ -1,41 +1,28 @@
-const { verifyToken } = require('../../tokenFunctions');
+const { isAuthorized } = require('../../tokenFunctions');
 const { user } = require('../../../models');
 const { sellHistory } = require('../../../models');
 
 module.exports = async (req, res) => {
-  const accessToken = req.headers.authorization.split(' ')[1];
+  let token = isAuthorized(req);
 
-  if (!accessToken) {
-    return res.status(401).json('not logged in ');
-    //token 아예 header로 안 넘어감 : 즉 없음
-  }
-  try {
-    const token = await verifyToken(accessToken);
-    const exists = await user.findOne({ where: { email: token } });
-    //exists가 없으면 null
-
-    //lee@gmail.com
-    //존재
-    if (exists) {
-      if (String(exists.id) === req.params.userId) {
-        //존재하고 보낸 userId와 보낸 토큰(이메일) 일치 시
-        let sellList = await sellHistory.findAll();
-        let data = [];
-        for (let s of sellList) {
-          data.push(s.dataValues);
-        }
-        return res.status(200).send({ data: data });
-      } else {
-        return res.status(401).send('wrong user');
-        //존재하지만 보낸 값과 일치 X면 : email이 같은 사람 존재 용도..?
+  if (token) {
+    const userExists = await user.findOne({ where: { email: token } });
+    if (userExists) {
+      let sellList = await sellHistory.findAll();
+      let data = [];
+      for (let s of sellList) {
+        data.push(s.dataValues);
       }
+      return res.status(200).send({ data: data });
     } else {
-      return res.status(401).send('no user');
-      //token이 verify는 되지만 정보 중에 없으면
+      return res.status(400).send('user not found');
     }
-  } catch (e) {
-    return res.status(401).json('invalid token');
-    //verify를 못할 때
+  } else {
+    if (token === false) {
+      return res.status(400).send('invalid token');
+    } else if (token === null) {
+      return res.status(401).send('not logged in');
+    }
   }
 
   //경우의 수 :
