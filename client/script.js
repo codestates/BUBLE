@@ -15,16 +15,34 @@ let signupData = {
   password: "1234567",
 };
 
-signin.addEventListener("click", (e) => {
-  fetch("https://localhost:4000/users/signin", {
+signin.addEventListener("click", async (e) => {
+  let response = await fetch("https://localhost:4000/users/signin", {
     method: "POST", // or 'PUT'
     body: JSON.stringify({ email: "lee@gamil.com", password: "1234" }), // data can be `string` or {object}!
     headers: {
       "Content-Type": "application/json",
     },
-  })
+    credentials: "include",
+  }).then((res) => res.json());
+  console.log(response);
+});
+
+signout.addEventListener("click", (e) => {
+  //clearCookie를 하기 위해 쿠키 접근 꼭 필요
+  fetch(
+    "https://localhost:4000/users/signout",
+
+    {
+      method: "POST", // or 'PUT'
+      mode: "cors", //
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
     .then((res) => res.json())
     .then((res) => console.log(res));
 });
-// signout.addEventListener("click", callback(signoutData, "signout"));
+
 // signup.addEventListener("click", callback(signupData, "signup"));

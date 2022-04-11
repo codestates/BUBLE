@@ -11,7 +11,7 @@ dotenv.config();
 
 app.use(express.json({ strict: false }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use('/', indexRouter);
 
 https
