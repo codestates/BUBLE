@@ -6,7 +6,7 @@ const itemRouter = require('./item');
 const likeRouter = require('./like');
 
 router.use('/user', userRouter);
-router.use('/order/:userId', orderRouter);
+router.use('/order', orderRouter);
 router.use('/item', itemRouter);
 router.use('/like', likeRouter);
 
