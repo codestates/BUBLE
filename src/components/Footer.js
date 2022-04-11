@@ -56,12 +56,15 @@ const Footer = () => {
         </BottomTop>
         {/* <BottomMiddle>
           <Company>
+
           </Company>
         </BottomMiddle>
         <BottomLow>
           <Notice>
+
           </Notice>
           <Copyright>
+
           </Copyright>
         </BottomLow> */}
       </Bottom>
@@ -76,7 +79,7 @@ const Footer = () => {
 
 const FooterDiv = styled.footer`
   position: relative;
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: column;
   background-color: white;
