@@ -1,30 +1,30 @@
-// let signin = document.getElementById("signin");
-// let signout = document.getElementById("signout");
-// let signup = document.getElementById("signup");
+// import axios from "axios";
+// axios.defaults.withCredentials = true;
 
-// let signinData = { email: "", password: "" };
-// let signoutData = 5;
-// let signupData = {
-//   userName: "vikki",
-//   favBrand: "나이키",
-//   email: "email@email.com",
-//   phoneNumber: "010-9973-7057",
-//   password: "1234567",
-// };
+let signin = document.getElementById("signin");
+let signout = document.getElementById("signout");
+let signup = document.getElementById("signup");
 
-// function callback(data, endpoint) {
-//   fetch(`http://localhost:4000/${endpoint}`, {
-//     method: "POST",
-//     body: JSON.stringify(data),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((res) => res.json())
-//     .then((res) => console.log(res))
-//     .catch((err) => console.error(err));
-// }
+let signinData = { email: "lee@gamil.com", password: "1234" };
+let signoutData = 5;
+let signupData = {
+  userName: "vikki",
+  favBrand: "나이키",
+  email: "email@email.com",
+  phoneNumber: "010-9973-7057",
+  password: "1234567",
+};
 
-// signin.addEventListener("onclick", callback(signinData, "signin"));
-// signout.addEventListener("onclick", callback(signoutData, "signout"));
-// signup.addEventListener("onclick", callback(signupData, "signup"));
+signin.addEventListener("click", (e) => {
+  fetch("https://localhost:4000/users/signin", {
+    method: "POST", // or 'PUT'
+    body: JSON.stringify({ email: "lee@gamil.com", password: "1234" }), // data can be `string` or {object}!
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+});
+// signout.addEventListener("click", callback(signoutData, "signout"));
+// signup.addEventListener("click", callback(signupData, "signup"));

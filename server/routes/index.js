@@ -5,10 +5,10 @@ const orderRouter = require('./order');
 const itemRouter = require('./item');
 const likeRouter = require('./like');
 
-router.use('/user', userRouter);
-router.use('/order', orderRouter);
-router.use('/item', itemRouter);
-router.use('/like', likeRouter);
+router.use('/users', userRouter);
+router.use('/orders', orderRouter);
+router.use('/items', itemRouter);
+router.use('/likes', likeRouter);
 
 //router로 모든 /items 경로에 대해
 
