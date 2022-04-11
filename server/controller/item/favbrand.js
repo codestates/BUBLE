@@ -17,24 +17,20 @@ module.exports = {
 
       // console.log('userInfo=======', userInfo);
       // 로그인 인증 확인후 통과봐면
+      // TODO: 4개씩 보내주는 로직 짜기
       if (userInfo) {
         const { favBrand } = userInfo;
         const itemInfo = await Item.findAll({
           where: { brand: favBrand },
           attributes: ['id', 'itemName', 'buyPrice', 'img'],
-          limit: 4,
         });
 
         // console.log(itemInfo);
-        if (!itemInfo.length) {
-          res.json({ message: 'Not found!!' });
+        if (!itemInfo.length || itemInfo.length < 4) {
+          res.status(404).json({ message: 'Not found!!' });
           return;
         }
 
-        // if (itemInfo.length > 4) {
-        //   res.status(200).json({ message: itemInfo });
-        //   return;
-        // }
         res.status(200).json({ message: itemInfo });
         // 로그인 인증 확인불가
       } else {

@@ -1,4 +1,4 @@
-const { buyCart, Sequelize } = require('../../models');
+const { buyCart } = require('../../models');
 const { Item } = require('../../models');
 const { Op } = require('sequelize');
 
@@ -18,31 +18,29 @@ module.exports = {
 
       // 숫자가 맞으면
       if (userid) {
-        console.log(userid);
-        const buyCartInfo = await buyCart.findAll({
-          where: { userId: userid },
-        });
+        const buyCartInfo = await buyCart
+          .findAndCountAll({
+            where: { userId: userid },
+          })
+          .then((res) => {
+            const { rows, count } = res;
+            if (count > 0) {
+              return rows.map((el) => el.itemId);
+            }
+          });
 
-        // console.log(buyCartInfo);
-        // buyCartInfo가 빈배열이면 다음을 리턴
-        if (!buyCartInfo.length) {
+        // buyCartInfo가 있으면
+        if (buyCartInfo) {
+          const itemInfo = await Item.findAll({
+            where: { id: { [Op.in]: buyCartInfo } },
+            attributes: ['grade', 'size', 'itemName'],
+          });
+
+          res.status(200).json({ message: itemInfo });
+        } else {
+          // buyCartInfo가 없으면
           res.status(404).json({ message: 'Not Found!' });
-          return;
         }
-        // console.log(userInfo);
-        // 빈 배일이 아니면
-        const itemId = [];
-        buyCartInfo.map((el) => {
-          itemId.push(el.itemId);
-        });
-
-        // 배열에서 아이템 찾는법
-        const itemInfo = await Item.findAll({
-          where: { id: { [Op.in]: itemId } },
-          attributes: ['grade', 'size', 'itemName'],
-        });
-
-        res.send({ message: itemInfo });
       }
     } catch (err) {
       console.error(err);
@@ -51,8 +49,33 @@ module.exports = {
     }
   },
   post: async (req, res) => {
-    console.log(req.body);
+    try {
+      // TODO: authentication 함수 사용
 
-    res.end('like post요청!');
+      // no authorized
+      // if (!user) {
+      //   res.status(401).json('You need to login');
+      //   return;
+      // }
+
+      const { userId, itemId } = req.body;
+      if (!userId || !itemId) {
+        res.status(400).json({ message: 'Bad Request!' });
+        return;
+      }
+      console.log(userId, typeof itemId);
+
+      const insertIntobuyCarts = await buyCart.create({
+        userId: userId,
+        itemId: itemId,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+
+      res.status(201).json({ message: insertIntobuyCarts });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Server error!' });
+    }
   },
 };
