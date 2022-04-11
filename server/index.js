@@ -11,8 +11,7 @@ dotenv.config();
 
 app.use(express.json({ strict: false }));
 app.use(cookieParser());
-app.use(cors());
-
+app.use(cors({ credentials: true }));
 app.use('/', indexRouter);
 // /order/:user_id/buy,sell,borrow
 // get, post
@@ -23,6 +22,14 @@ app.use('/', indexRouter);
 // /:user_id/buy,sell,borrow 한 곳에? post에 따라? getdp Efk?
 // /signout, signin, signup
 
-module.exports = app.listen(port, () => {
-  console.log(`      🚀 Server is starting on ${port}`);
-});
+https
+  .createServer(
+    {
+      key: fs.readFileSync(__dirname + '/key.pem', 'utf-8'),
+      cert: fs.readFileSync(__dirname + '/cert.pem', 'utf-8'),
+    },
+    app.use('/', (req, res) => {
+      res.send('Congrats! You made https server now :)');
+    })
+  )
+  .listen(port);

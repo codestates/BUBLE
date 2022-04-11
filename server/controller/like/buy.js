@@ -63,16 +63,15 @@ module.exports = {
         res.status(400).json({ message: 'Bad Request!' });
         return;
       }
-      console.log(userId, typeof itemId);
 
-      const insertIntobuyCarts = await buyCart.create({
+      const insertIntoBuyCarts = await buyCart.create({
         userId: userId,
         itemId: itemId,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
 
-      res.status(201).json({ message: insertIntobuyCarts });
+      res.status(201).json({ message: insertIntoBuyCarts });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error!' });
