@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     where: { email: email, password: password },
   });
 
-  if (exists.isNewRecord) {
+  if (!exists) {
     const createUser = await user.create({
       userName: userName,
       phoneNumber: phoneNumber,

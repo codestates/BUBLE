@@ -1,5 +1,5 @@
 const { user } = require('../../models/index');
-const { generateToken, verifyToken } = require('../tokenFunctions');
+const { generateToken } = require('../tokenFunctions');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
@@ -13,8 +13,7 @@ module.exports = async (req, res) => {
   });
 
   if (userInfo) {
-    const { id, userName, phoneNumber, favBrand, createdAt, updatedAt } =
-      userInfo;
+    const { id, userName, phoneNumber, favBrand } = userInfo;
 
     const accessToken = generateToken(email);
     const refreshToken = generateToken(email);
