@@ -32,7 +32,7 @@ function Basket() {
                     <ContentSize>265</ContentSize>
                     <ContentGrade>S</ContentGrade>
                 </BodyDivContent>
-                <BodyDivPrice>70000 won</BodyDivPrice>
+                <BodyDivPrice>      won</BodyDivPrice>
             </BodyDiv>
         )
     }
@@ -60,10 +60,15 @@ function Basket() {
                     {BasketBodyContent()}
                     {BasketBodyContent()}
                     {BasketBodyContent()}
+                    {BasketBodyContent()}
+                    {BasketBodyContent()}
                 </BasketBody>
                 <BasketSum>
+                    <CalculatorText>
+                        {/* 총 3개 가격 210000 won */}
+                    </CalculatorText>
                     <SumDiv>
-
+                        구매하기
                     </SumDiv>
                 </BasketSum>
             </BasketMiddle>
@@ -90,9 +95,9 @@ border: 1px solid blue; */
 `
 //중단
 const BasketMiddle = styled.div`
-height: 60vh ;
+height: 70vh ;
 /* border: 1px solid black; */
-margin-top: 2em;
+margin-top: 3em;
 /* display: flex; */
 `
 const BasketTitle = styled.div`
@@ -242,21 +247,28 @@ width: 25%;
 vertical-align:center;
 text-align: center;
 flex-direction:column;
+color: #333333;
 `
 const BasketSum = styled.div`
-height:4em;
+height:10em;
 width:100% ;
-
+/* display:flex ; */
 justify-items:center ;
 /* place-items:center; */
 text-align: center;
 
+`
+const CalculatorText = styled.div`
+font-size: 19px;
+width: 35vh;
+height: 8vh ;
 `
 const SumDiv = styled.div`
 border-radius: 6% ;
 margin-top: 2em;
 margin-left:60vh ;
 color:white ;
+font-size:1.5em ;
 background-color:#222222;
 display:inline-block;
 width: 25vh;
