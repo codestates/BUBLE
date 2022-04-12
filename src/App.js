@@ -31,8 +31,8 @@ function App() {
     <div className="App">
     {isLoading && <Loding/>}
     {/* 안녕 */}
-    <Landing/>
-    {/* <Basket></Basket> */}
+    {/* <Landing/> */}
+    <Basket></Basket>
     {/* <NotFound/> */}
      {/* <Footer/> */}
      {/* <BrowserRouter>

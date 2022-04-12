@@ -83,7 +83,7 @@ const FooterDiv = styled.footer`
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 32px
+  padding: 32px;
 `
 
 const Top = styled.section`

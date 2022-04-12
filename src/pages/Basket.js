@@ -57,7 +57,8 @@ border: 1px solid blue;
 `
 //중단
 const BasketMiddle = styled.div`
-height: 55vh ;
+
+height: 70vh ;
 border: 1px solid black;
 margin-top: 2em;
 `
@@ -68,51 +69,73 @@ height: 60px ;
 `
 const TitleDiv = styled.div`
 border: 1px solid black;
+margin-left: 30px;
+margin-top: 10px;
+margin-bottom: 10px;
 padding-left: 1.5em ;
 padding-top: 1.5em ;
-height: 2em;
-width: 8em ;
+height: 0.9em;
+width: 5em ;
 `
 const TitleSelect = styled.div`
 border: 1px solid black;
 display:flex ;
-height: 2em;
-
+height: 3em;
+text-align: center;
+vertical-align: center;
 `
-const SelectAll = styled.check`
+const SelectAll = styled.div`
 border: 1px solid black;
+margin-left: 30px;
 `
 const SelectDelete = styled.div`
 border: 1px solid black;
+margin-left: 15px;
 `
-const BasketBody = styled.div`
+const BasketBody = styled.div`//Div의 부모
+margin-top: 3em;
 border: 1px solid black;
-height: 2em;
+height: 40vh;
+align-items: center;
+
 `
-const BodyDiv = styled.div`
+const BodyDiv = styled.div`// Body의 자식
 border: 1px solid black;
-height: 1em;
+display:flex ;
+height: 30vh;
+width: 80% ;
+justify-content: center;
+/* align-items: center; */
+/* flex-direction:column; */
 `
 const BodyDivCheck = styled.div`
 border: 1px solid black;
+width: 25%; 
 `
 const BodyDivImg = styled.div`
+height: 8em;
 border: 1px solid black;
+width: 25%; 
 `
 const BodyDivContent = styled.div`
 border: 1px solid black;
+width: 25%; 
 `
 const ContentName = styled.div`
 border: 1px solid black;
+height: 33.3% ;
 `
 const ContentSize = styled.div`
 border: 1px solid black;
+height: 33.3% ;
 `
 const ContentGrade = styled.div`
 border: 1px solid black;
+height: 33.3% ;
 `
 const BodyDivPrice = styled.div`
 border: 1px solid black;
+width: 25%; 
 `
 const BasketSum = styled.div`
 
