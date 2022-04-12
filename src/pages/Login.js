@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+// import React, { useState, useEffect } from 'react';
+// import styled from 'styled-components';
 
-const Login = () => {
-  return (
-    <LoginDiv>
-      <Logo>
+// const Login = () => {
+//   return (
+//     <LoginDiv>
+//       <Logo>
 
-      </Logo>
-      <InputIdBox>
-        <InputTitle>
+//       </Logo>
+//       <InputIdBox>
+//         <InputTitle>
 
-        </InputTitle>
-        <InputId>
+//         </InputTitle>
+//         <InputId>
 
-        </InputId>
-      </InputIdBox>
-      <InputPasswordBox>
-        <InputTitle>
+//         </InputId>
+//       </InputIdBox>
+//       <InputPasswordBox>
+//         <InputTitle>
 
-        </InputTitle>
-        <InputPassword>
+//         </InputTitle>
+//         <InputPassword>
 
-        </InputPassword>
-      </InputPasswordBox>
-      <LoginBtn>
+//         </InputPassword>
+//       </InputPasswordBox>
+//       <LoginBtn>
 
-      </LoginBtn>
-      <LookList>
-        <Signup></Signup>
-        <FindId></FindId>
-        <FindPassword></FindPassword>
-      </LookList>
-    </LoginDiv>
-  )
-}
+//       </LoginBtn>
+//       <LookList>
+//         <Signup></Signup>
+//         <FindId></FindId>
+//         <FindPassword></FindPassword>
+//       </LookList>
+//     </LoginDiv>
+//   )
+// }
 
-// const LoginDiv = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   `
+// // const LoginDiv = styled.div`
+// //   display: flex;
+// //   flex-direction: column;
+// //   `
 
-export default Login
+// export default Login

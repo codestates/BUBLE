@@ -1,65 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+// import React, { useState, useEffect } from 'react'
+// import styled from 'styled-components'
 
-const Signup = () => {
-    return (
-        <SignUpDiv>
-            <SignUpTitlte>
+// const Signup = () => {
+//     return (
+//         <SignUpDiv>
+//             <SignUpTitlte>
 
-            </SignUpTitlte>
-            <InputNameBox>
-                <InputTitle>
+//             </SignUpTitlte>
+//             <InputNameBox>
+//                 <InputTitle>
 
-                </InputTitle>
-                <InputName>
+//                 </InputTitle>
+//                 <InputName>
 
-                </InputName>
-            </InputNameBox>
-            <InputIdBox>
-                <InputTitle>
+//                 </InputName>
+//             </InputNameBox>
+//             <InputIdBox>
+//                 <InputTitle>
 
-                </InputTitle>
-                <InputId>
+//                 </InputTitle>
+//                 <InputId>
 
-                </InputId>
-            </InputIdBox>
-            <InputPasswordBox>
-                <InputTitle>
+//                 </InputId>
+//             </InputIdBox>
+//             <InputPasswordBox>
+//                 <InputTitle>
 
-                </InputTitle>
-                <InputPassword>
+//                 </InputTitle>
+//                 <InputPassword>
 
-                </InputPassword>
-            </InputPasswordBox>
-            <InputPhoneNumBox>
-                <InputTitle>
+//                 </InputPassword>
+//             </InputPasswordBox>
+//             <InputPhoneNumBox>
+//                 <InputTitle>
 
-                </InputTitle>
-                <InputPhoneNum>
+//                 </InputTitle>
+//                 <InputPhoneNum>
 
-                </InputPhoneNum>
-            </InputPhoneNumBox>
-            <InputEmailBox>
-                <InputTitle>
+//                 </InputPhoneNum>
+//             </InputPhoneNumBox>
+//             <InputEmailBox>
+//                 <InputTitle>
 
-                </InputTitle>
-                <InputEmail>
+//                 </InputTitle>
+//                 <InputEmail>
 
-                </InputEmail>
-            </InputEmailBox>
-            <InputFavBox>
-                <InputTitle>
+//                 </InputEmail>
+//             </InputEmailBox>
+//             <InputFavBox>
+//                 <InputTitle>
 
-                </InputTitle>
-                <InputFav>
+//                 </InputTitle>
+//                 <InputFav>
 
-                </InputFav>
-            </InputFavBox>
-            <SignUpBtn>
+//                 </InputFav>
+//             </InputFavBox>
+//             <SignUpBtn>
 
-            </SignUpBtn>
-        </SignUpDiv>
-    )
-}
+//             </SignUpBtn>
+//         </SignUpDiv>
+//     )
+// }
 
-export default Signup
+// export default Signup
