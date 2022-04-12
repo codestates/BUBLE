@@ -40,6 +40,7 @@ const HeaderTop = styled.div`
 `;
 
 const Logo = styled.div`
+  display: relative;
   flex: 0 0 300px; 
   font-size: 40px;
   font-weight: 600;
