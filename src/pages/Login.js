@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+<<<<<<< HEAD
 const Login = () => {
   return (
     <LoginDiv>
@@ -40,4 +41,10 @@ const Login = () => {
 //   flex-direction: column;
 //   `
 
+=======
+function Login(){
+    return ;
+}
+
+>>>>>>> fc4c6f4d5352ef164a2002b324db3f079b08154a
 export default Login
