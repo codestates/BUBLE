@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import Footer from "../components/Footer";
 // 관심상품
-function Basket () {
-    const BasketBodyContent = function BBC () {
+function Basket() {
+    const BasketBodyContent = function BBC() {
         return (
             <BodyDiv>
                 <BodyDivCheck></BodyDivCheck>
@@ -17,31 +17,31 @@ function Basket () {
         )
     }
 
- return (
-    <Div>
-    <BasketTop>
-        헤더 들어가야돼
-    </BasketTop>
-    <BasketMiddle>
-        <BasketTitle>
-            <TitleDiv>관심상품</TitleDiv>
-            <TitleSelect>
-                <SelectAll>전체선택</SelectAll>
-                <SelectDelete>선택삭제</SelectDelete>    
-            </TitleSelect>
-        </BasketTitle>
-        <BasketBody>
-            {BasketBodyContent()}
-        </BasketBody>
-        <BasketSum>
-            <SumDiv>결제하기</SumDiv>
-        </BasketSum>
-    </BasketMiddle>
-    <BasketBottom>
-        <Footer/>
-    </BasketBottom>
-    </Div>
- )
+    return (
+        <Div>
+            <BasketTop>
+                헤더 들어가야돼
+            </BasketTop>
+            <BasketMiddle>
+                <BasketTitle>
+                    <TitleDiv>관심상품</TitleDiv>
+                    <TitleSelect>
+                        <SelectAll>전체선택</SelectAll>
+                        <SelectDelete>선택삭제</SelectDelete>
+                    </TitleSelect>
+                </BasketTitle>
+                <BasketBody>
+                    {BasketBodyContent()}
+                </BasketBody>
+                <BasketSum>
+                    <SumDiv>결제하기</SumDiv>
+                </BasketSum>
+            </BasketMiddle>
+            <BasketBottom>
+                <Footer />
+            </BasketBottom>
+        </Div>
+    )
 }
 
 // css
@@ -57,8 +57,13 @@ border: 1px solid blue;
 `
 //중단
 const BasketMiddle = styled.div`
+<<<<<<< HEAD
 
 height: 70vh ;
+=======
+diplay: flex;
+height: 55vh ;
+>>>>>>> 10c62637dd2f96b884ce199fa67f31e2af0c1acf
 border: 1px solid black;
 margin-top: 2em;
 `
