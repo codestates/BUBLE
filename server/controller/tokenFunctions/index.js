@@ -13,6 +13,7 @@ module.exports = {
       return null;
     }
     try {
+      // user data
       return verify(accessToken, process.env.ACCESS_TOKEN);
     } catch (e) {
       return false;
