@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import { Route } from 'react-router-dom'
 
 const Login = () => {
   return (
@@ -31,17 +31,19 @@ const Login = () => {
 
         </InputPassword>
       </InputPasswordBox>
+      <Signup>회원가입</Signup>
       <LoginBtn>
         로그인
       </LoginBtn>
-      <LookList>
-        <Signup>회원가입</Signup>
-      </LookList>
+
     </LoginDiv >
   )
 }
 
 const LoginDiv = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,7 +90,7 @@ const InputPassword = styled.input`
 `
 
 const LoginBtn = styled.button`
-  margin-top: 45px;
+  margin-top: 12px;
   border-radius: 10px;
   border: none;
   width: 350px;
@@ -100,13 +102,12 @@ const LoginBtn = styled.button`
   cursor: pointer;
 `
 
-const LookList = styled.div`
-  display: flex;
-`
-
-const Signup = styled.a`
-  margin-top: 12px;
+const Signup = styled.button`
+  margin-top: 45px;
   font-weight: 500;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 `
 
 export default Login;

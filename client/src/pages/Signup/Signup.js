@@ -2,102 +2,106 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 const Signup = () => {
-    return (
-        <SignupDiv>
-            <SignUpTitlte>
-                회원가입
-            </SignUpTitlte>
-            <InputNameBox>
-                <InputTitle>
-                    이름*
-                </InputTitle>
-                <InputName
-                    type="text"
-                    name="inputName"
-                    placeholder="이름을 입력하세요."
-                >
-                </InputName>
-            </InputNameBox>
-            <InputIdBox>
-                <InputTitle>
-                    아이디*
-                </InputTitle>
-                <InputId
-                    type="text"
-                    name="inputId"
-                    placeholder='아이디를 입력하세요.'
-                >
-                </InputId>
-            </InputIdBox>
-            <InputPasswordBox>
-                <InputTitle>
-                    비밀번호*
-                </InputTitle>
-                <InputPassword
-                    type="password"
-                    name="inputPassword"
-                    placeholder='비밀번호를 입력하세요.'
-                >
+  return (
+    <SignupDiv>
+      <Logo>
+        BUBLE
+      </Logo>
+      <InputNameBox>
+        <InputTitle>
+          이름*
+        </InputTitle>
+        <InputName
+          type="text"
+          name="inputName"
+          placeholder="이름을 입력하세요."
+        >
+        </InputName>
+      </InputNameBox>
+      <InputIdBox>
+        <InputTitle>
+          아이디*
+        </InputTitle>
+        <InputId
+          type="text"
+          name="inputId"
+          placeholder='아이디를 입력하세요.'
+        >
+        </InputId>
+      </InputIdBox>
+      <InputPasswordBox>
+        <InputTitle>
+          비밀번호*
+        </InputTitle>
+        <InputPassword
+          type="password"
+          name="inputPassword"
+          placeholder='비밀번호를 입력하세요.'
+        >
 
-                </InputPassword>
-            </InputPasswordBox>
-            <InputPhoneNumBox>
-                <InputTitle>
-                    전화번호*
-                </InputTitle>
-                <InputPhoneNum
-                    type="text"
-                    name="inputPhoneNum"
-                    placeholder="전화번로를 입력하세요."
-                >
-                </InputPhoneNum>
-            </InputPhoneNumBox>
-            <InputEmailBox>
-                <InputTitle>
-                    이메일*
-                </InputTitle>
-                <InputEmail
-                    type="text"
-                    name="inputEmail"
-                    placeholder="이메일을 입력하세요."
-                >
+        </InputPassword>
+      </InputPasswordBox>
+      <InputPhoneNumBox>
+        <InputTitle>
+          전화번호*
+        </InputTitle>
+        <InputPhoneNum
+          type="text"
+          name="inputPhoneNum"
+          placeholder="전화번로를 입력하세요."
+        >
+        </InputPhoneNum>
+      </InputPhoneNumBox>
+      <InputEmailBox>
+        <InputTitle>
+          이메일*
+        </InputTitle>
+        <InputEmail
+          type="text"
+          name="inputEmail"
+          placeholder="이메일을 입력하세요."
+        >
 
-                </InputEmail>
-            </InputEmailBox>
-            <InputFavBox>
-                <InputTitle>
-                    선호 브랜드
-                </InputTitle>
-                <InputFav
-                    type="text"
-                    name="inputPhoneNum"
-                    placeholder="선호브랜드를 입력하세요. 예) 나이키, 아디다스"
-                >
+        </InputEmail>
+      </InputEmailBox>
+      <InputFavBox>
+        <InputTitle>
+          선호 브랜드
+        </InputTitle>
+        <InputFav
+          type="text"
+          name="inputPhoneNum"
+          placeholder="선호브랜드를 입력하세요. 예) 나이키, 아디다스"
+        >
 
-                </InputFav>
-            </InputFavBox>
-            <SignupBtn>
-                회원가입
-            </SignupBtn>
-        </SignupDiv>
-    )
+        </InputFav>
+      </InputFavBox>
+      <SignupBtn>
+        회원가입
+      </SignupBtn>
+    </SignupDiv>
+  )
 }
 
 const SignupDiv = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
 `
 
-const SignUpTitlte = styled.div`
+const Logo = styled.div`
   font-size: 50px;
   font-weight: 600;
+  font-style: italic;
   text-align: center;
+  cursor: pointer;
 `
 
 const InputNameBox = styled.div`
-  margin-top: 40px;
+  margin-top: 80px;
   `
 
 const InputIdBox = styled.div`

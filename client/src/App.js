@@ -4,22 +4,44 @@ import Header from "./components/Header"
 import Login from "./pages/Login/Login"
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
+import Landing from './pages/Landing/Landing';
+import { BrowserRouter as Router, Switch as Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [token, setToken] = useState("");
-  const [isLogin, setIsLogin] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [token, setToken] = useState("");
+  // const [isLogin, setIsLogin] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="App">
-    {/* {isLoading && <Loding/>} */}
-    {/* 안녕 */}
-    {/* <Login/> */}
-    <Landing/>
-    {/* <Basket></Basket> */}
-    {/* <NotFound/> */}
-     {/* <Footer/> */}
-     {/* <BrowserRouter>
+    <Router>
+      <div className="App">
+
+        <Routes>
+          <Route exact path="/"><Landing /></Route>
+          <Route path="/login"><Login /></Route>
+        </Routes>
+
+      </div>
+    </Router>
+
+    // <div>
+    //     <Header />
+    // </div>
+  )
+}
+export default App
+
+
+
+
+{/* {isLoading && <Loding/>} */ }
+{/* 안녕 */ }
+{/* <Login/> */ }
+
+{/* <Basket></Basket> */ }
+{/* <NotFound/> */ }
+{/* <Footer/> */ }
+{/* <BrowserRouter>
      <Routes>
         <Route exact path="/">
           <Brand />
@@ -38,7 +60,3 @@ function App() {
         <Route path="*" component={NotFound} />
         </Routes>
       </BrowserRouter> */}
-    </div>
-  )
-    }
-export default App

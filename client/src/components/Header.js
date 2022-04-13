@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom"
 
 const Header = () => {
   return (
@@ -13,7 +14,7 @@ const Header = () => {
           <Notice>고객센터</Notice>
           <Wish>관심상품</Wish>
           <Mypage>마이페이지</Mypage>
-          <Login>Login</Login>
+          <Link to="/login"><Login>Login</Login></Link>
         </IconGroup>
 
       </HeaderTop>
@@ -58,8 +59,8 @@ const IconGroup = styled.div`
   display: flex;
   flex: 0 0 300px; 
   justify-content: space-around;
-  padding-bottom: 35px
-`;
+  padding-bottom: 35px;
+`
 
 const Notice = styled.button`
   font-size: 13px;

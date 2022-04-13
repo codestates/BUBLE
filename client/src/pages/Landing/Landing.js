@@ -3,8 +3,8 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from '@fortawesome/fontawesome'
-import { faCaretDown  } from '@fortawesome/free-solid-svg-icons';
-import { faBookmark  } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 // import {ViewMore} from "../components/ViewMore"
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
 
@@ -12,11 +12,11 @@ import { faBookmark  } from '@fortawesome/free-solid-svg-icons'
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트 
 const Brand = () => {
-    const products = function product (){
+    const products = function product() {
         return (
             <ProductDiv>
-                <ProductImage/>
-                <ProductMark><FontAwesomeIcon icon={faBookmark} className='mark'/></ProductMark>
+                <ProductImage />
+                <ProductMark><FontAwesomeIcon icon={faBookmark} className='mark' /></ProductMark>
                 <ProductInfo>
                     <ProductName>Nike</ProductName>
                     <ProductContent>super joden limited</ProductContent>
@@ -24,46 +24,46 @@ const Brand = () => {
                     <Productnow>즉시 구매가</Productnow>
                 </ProductInfo>
             </ProductDiv>
-     )
+        )
     }
- return (
-    <BrandContainer>
-    <Top>
-        <Area>
-            <FavDiv>Preferred
-                <FavDivBottom>
-                    선호 등록 상품
-                </FavDivBottom>
-            </FavDiv>
-        </Area>
-        <Div>
-           {products()}
-           {products()}
-           {products()}
-           {products()}
-        </Div>
-    </Top>
-    <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more'/></Morebtn>
-   
-    <Bottom>
-        <Area>
-            <PopularDiv>Popular
-            <PopularDivBottom>
-                    인기 등록 상품
-                </PopularDivBottom>
-            </PopularDiv>
-        </Area>
-        <Div>
-           {products()}
-           {products()}
-           {products()}
-           {products()}
-        </Div>
-    </Bottom>
-    <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more'/></Morebtn>
-    </BrandContainer>
-    
- )
+    return (
+        <BrandContainer>
+            <Top>
+                <Area>
+                    <FavDiv>Preferred
+                        <FavDivBottom>
+                            선호 등록 상품
+                        </FavDivBottom>
+                    </FavDiv>
+                </Area>
+                <Div>
+                    {products()}
+                    {products()}
+                    {products()}
+                    {products()}
+                </Div>
+            </Top>
+            <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
+
+            <Bottom>
+                <Area>
+                    <PopularDiv>Popular
+                        <PopularDivBottom>
+                            인기 등록 상품
+                        </PopularDivBottom>
+                    </PopularDiv>
+                </Area>
+                <Div>
+                    {products()}
+                    {products()}
+                    {products()}
+                    {products()}
+                </Div>
+            </Bottom>
+            <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
+        </BrandContainer>
+
+    )
 }
 //<FontAwesomeIcon icon="fa-solid fa-caret-down" />
 // const = styled.``
@@ -206,20 +206,20 @@ font-size: 12px ;
 const Landing = () => {
     return (
         <LandingDiv>
-        <LandingTop>
-            <Header/>
-        </LandingTop>
-        <LandingMiddle>
-            <Brand/>
-        </LandingMiddle>
-        <LandingBottom>
-            <Footer/>
-        </LandingBottom>
+            <LandingTop>
+                <Header />
+            </LandingTop>
+            <LandingMiddle>
+                <Brand />
+            </LandingMiddle>
+            <LandingBottom>
+                <Footer />
+            </LandingBottom>
         </LandingDiv>
     )
-    
-    
-} 
+
+
+}
 
 const LandingDiv = styled.div`
 `
