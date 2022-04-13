@@ -12,6 +12,8 @@ const Login = ({ handleSignin, userinfo }) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
+  console.log(loginInfo);
+
   return (
     <div className="App">
       <div>
@@ -23,7 +25,7 @@ const Login = ({ handleSignin, userinfo }) => {
           onChange={handleInputValue("password")}
           style={{ border: "1px solid black", display: "block" }}
         ></input>
-        <button onClick={handleSignin}>로그인</button>
+        <button onClick={() => handleSignin(loginInfo)}>로그인</button>
         {userinfo ? (
           <>
             <div>{userinfo.id}</div>
