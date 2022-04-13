@@ -39,28 +39,35 @@ const HeaderTop = styled.div`
   height: 60px;
 `;
 
-const Logo = styled.div`
+const Logo = styled.a`
   display: relative;
   flex: 0 0 300px; 
   font-size: 40px;
   font-weight: 600;
   font-style: italic;
   text-align: center;
+  cursor: pointer;
 `
 
 const SearchIcon = styled.div`
   font-size: 23px;
+  padding-top: 4px;
   flex: 0 0 300px;
 `
 const IconGroup = styled.div`
   display: flex;
   flex: 0 0 300px; 
   justify-content: space-around;
+  padding-bottom: 35px
 `;
 
-const Notice = styled.div`
+const Notice = styled.button`
   font-size: 13px;
-`;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  text-align: top;
+  `;
 const Wish = styled(Notice)``;
 const Mypage = styled(Notice)``;
 const Login = styled(Notice)``;

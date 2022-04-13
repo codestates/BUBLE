@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-// import { Routes, Route, Redirect, useHistory, BrowserRouter } from 'react-router-dom';
-// import axios from 'axios';
-// import Loding from './components/Loding';
-// import styled from 'styled-components';
 import Footer from "./components/Footer";
 import Header from "./components/Header"
 import Login from "./pages/Login"
+import Signup from './pages/Signup';
+import Mypage from './pages/Mypage';
 
 function App() {
   // const [token, setToken] = useState("");
@@ -16,13 +14,13 @@ function App() {
   return (
     <div>
       <Header />
-      <Login />
+      <Signup />
       <Footer />
     </div>
   )
 }
 
-export default App
+export default App;
 
 
 

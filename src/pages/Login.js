@@ -36,8 +36,6 @@ const Login = () => {
       </LoginBtn>
       <LookList>
         <Signup>회원가입</Signup>
-        <FindId>아이디 찾기</FindId>
-        <FindPassword>패스워드 찾기</FindPassword>
       </LookList>
     </LoginDiv >
   )
@@ -90,24 +88,25 @@ const InputPassword = styled.input`
 `
 
 const LoginBtn = styled.button`
-margin-top: 45px;
-border-radius: 10px;
-border: none;
-width: 350px;
-height: 55px;
-font-size: 20px;
-font-weight: bold;
-background-color: #CBCBCB;
-color: white;
-cursor: pointer;
+  margin-top: 45px;
+  border-radius: 10px;
+  border: none;
+  width: 350px;
+  height: 55px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #CBCBCB;
+  color: white;
+  cursor: pointer;
 `
 
 const LookList = styled.div`
-display: flex;
+  display: flex;
 `
 
-const Signup = styled.div``
-const FindId = styled.div``
-const FindPassword = styled.div``
+const Signup = styled.a`
+  margin-top: 12px;
+  font-weight: 500;
+`
 
 export default Login;
