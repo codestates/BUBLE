@@ -4,7 +4,7 @@ import Header from "./components/Header"
 import Login from "./pages/Login/Login"
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
-
+import Landing from './pages/Landing/Landing';
 function App() {
   const [token, setToken] = useState("");
   const [isLogin, setIsLogin] = useState(false);
