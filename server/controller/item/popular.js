@@ -22,7 +22,7 @@ module.exports = {
 
       res.status(200).json({ popular: itemInfo });
     } catch (err) {
-      cconsole.error(err);
+      console.error(err);
       res.status(500).json({ message: 'Server error!' });
       return;
     }

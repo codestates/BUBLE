@@ -1,5 +1,5 @@
 const { user } = require('../../models/index');
-const { generateToken, verifyToken } = require('../tokenFunctions');
+const { generateToken } = require('../tokenFunctions');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
@@ -12,9 +12,10 @@ module.exports = async (req, res) => {
     where: { email: email, password: password },
   });
 
+  console.log(userInfo);
+
   if (userInfo) {
-    const { id, userName, phoneNumber, favBrand, createdAt, updatedAt } =
-      userInfo;
+    const { id, userName, phoneNumber, favBrand } = userInfo;
 
     const accessToken = generateToken(email);
     const refreshToken = generateToken(email);
@@ -25,9 +26,9 @@ module.exports = async (req, res) => {
     res
       .status(200)
       .cookie('refreshToken', refreshToken, {
-        expires: new Date(Date.now() + 3000),
-        httpOnly: true,
-        secure: true,
+        // expires: new Date(Date.now() + 3000),
+        // httpOnly: true,
+        // secure: true,
       })
       .send({
         //cookie로 토큰 여러개 보낼 수 없어서 응답으로 보낸 다음 -> 클라에서 localStorage.setItem('accessToken', accessToken)

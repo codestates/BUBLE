@@ -11,12 +11,8 @@ dotenv.config();
 
 app.use(express.json({ strict: false }));
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(cors());
 app.use('/', indexRouter);
-// /order/:user_id/buy,sell,borrow
-// get, post
-// /user/signout, signin, signup
-// get, post
 
 // /order, user (routes/index.js)
 // /:user_id/buy,sell,borrow 한 곳에? post에 따라? getdp Efk?

@@ -1,14 +1,13 @@
 const { buyCart } = require('../../models');
 const { Item } = require('../../models');
+const { user } = require('../../models');
 const { Op } = require('sequelize');
+const { isAuthorized } = require('../tokenFunctions');
 
 module.exports = {
   get: async (req, res) => {
     try {
       const { userid } = req.params;
-
-      // TODO: authentication 함수 사용
-      // i.e. const userInfo = await isAuthorized(req)
 
       // :userid가 숫자가 아니면 다음을 리턴
       if (isNaN(userid)) {
@@ -16,24 +15,38 @@ module.exports = {
         return;
       }
 
-      // 숫자가 맞으면
-      if (userid) {
-        const buyCartInfo = await buyCart
-          .findAndCountAll({
-            where: { userId: userid },
-          })
-          .then((res) => {
-            const { rows, count } = res;
-            if (count > 0) {
-              return rows.map((el) => el.itemId);
-            }
-          });
+      // TODO: authentication 함수 사용
+      const data = isAuthorized(req);
 
-        // buyCartInfo가 있으면
-        if (buyCartInfo) {
+      const { email: userEmail } = await user.findOne({
+        where: { id: userid },
+      });
+
+      console.log(userEmail);
+
+      // 현재 회원이 조회할 권한이 없는 경우
+      if (!data || data !== userEmail) {
+        res.status(403).json({ message: 'Not authorized!' });
+        return;
+      }
+
+      if (userid) {
+        const buyCartInfo = await buyCart.findAll({
+          where: { userId: userid },
+        });
+
+        // .then((res) => {
+        //   const { rows, count } = res;
+        //   if (count > 0) {
+        //     return rows.map((el) => el.itemId);
+        //   }
+        // });
+
+        if (buyCartInfo.length) {
+          const itemId = buyCartInfo.map((el) => el.itemId);
           const itemInfo = await Item.findAll({
-            where: { id: { [Op.in]: buyCartInfo } },
-            attributes: ['grade', 'size', 'itemName'],
+            where: { id: { [Op.in]: itemId } },
+            attributes: ['id', 'grade', 'size', 'itemName'],
           });
 
           res.status(200).json({ message: itemInfo });
@@ -52,21 +65,31 @@ module.exports = {
     try {
       // TODO: authentication 함수 사용
 
-      // no authorized
-      // if (!user) {
-      //   res.status(401).json('You need to login');
-      //   return;
-      // }
+      const { userid, itemid } = req.body;
+      const { userid: paramid } = req.params;
 
-      const { userId, itemId } = req.body;
-      if (!userId || !itemId) {
+      if (!userid || !itemid) {
         res.status(400).json({ message: 'Bad Request!' });
+        return;
+      }
+      const data = isAuthorized(req);
+
+      console.log('data========', data);
+
+      const { email: userEmail } = await user.findOne({
+        where: { id: paramid },
+      });
+      console.log(userEmail === data);
+
+      // 현재 회원이 조회할 권한이 없는 경우
+      if (!data || data !== userEmail) {
+        res.status(403).json({ message: 'Not authorized!' });
         return;
       }
 
       const insertIntoBuyCarts = await buyCart.create({
-        userId: userId,
-        itemId: itemId,
+        userId: userid,
+        itemId: itemid,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
