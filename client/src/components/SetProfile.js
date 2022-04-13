@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-const Signup = () => {
+const SetProfile = ({ userInfo, setUpdate }) => {
   return (
     <SignupDiv>
-      <Logo to="/">
-        BUBLE
-      </Logo>
+      <Button onClick={() => setUpdate(true)}>
+        저장
+      </Button>
       <InputNameBox>
         <InputTitle>
           이름*
@@ -15,21 +15,22 @@ const Signup = () => {
         <InputName
           type="text"
           name="inputName"
-          placeholder="이름을 입력하세요."
+          placeholder={userInfo.userName}
         >
         </InputName>
       </InputNameBox>
-      <InputIdBox>
+      <InputEmailBox>
         <InputTitle>
-          아이디*
+          이메일*
         </InputTitle>
-        <InputId
+        <InputEmail
           type="text"
-          name="inputId"
-          placeholder='아이디를 입력하세요.'
+          name="inputEmail"
+          placeholder={userInfo.email}
         >
-        </InputId>
-      </InputIdBox>
+
+        </InputEmail>
+      </InputEmailBox>
       <InputPasswordBox>
         <InputTitle>
           비밀번호*
@@ -37,7 +38,7 @@ const Signup = () => {
         <InputPassword
           type="password"
           name="inputPassword"
-          placeholder='비밀번호를 입력하세요.'
+          placeholder={userInfo.password}
         >
 
         </InputPassword>
@@ -49,22 +50,10 @@ const Signup = () => {
         <InputPhoneNum
           type="text"
           name="inputPhoneNum"
-          placeholder="전화번로를 입력하세요."
+          placeholder={userInfo.phoneNumber}
         >
         </InputPhoneNum>
       </InputPhoneNumBox>
-      <InputEmailBox>
-        <InputTitle>
-          이메일*
-        </InputTitle>
-        <InputEmail
-          type="text"
-          name="inputEmail"
-          placeholder="이메일을 입력하세요."
-        >
-
-        </InputEmail>
-      </InputEmailBox>
       <InputFavBox>
         <InputTitle>
           선호 브랜드
@@ -72,86 +61,7 @@ const Signup = () => {
         <InputFav
           type="text"
           name="inputPhoneNum"
-          placeholder="선호브랜드를 입력하세요. 예) 나이키, 아디다스"
-        >
-
-        </InputFav>
-      </InputFavBox>
-      <SignupBtn>
-        회원가입
-      </SignupBtn>
-    </SignupDiv>
-  )
-}
-
-const UserInfo = () => {
-  return (
-    <SignupDiv>
-      <InputNameBox>
-        <InputTitle>
-          이름*
-        </InputTitle>
-        <InputName
-          type="text"
-          name="inputName"
-          placeholder="이름을 입력하세요."
-        >
-        </InputName>
-      </InputNameBox>
-      <InputIdBox>
-        <InputTitle>
-          아이디*
-        </InputTitle>
-        <InputId
-          type="text"
-          name="inputId"
-          placeholder='아이디를 입력하세요.'
-        >
-        </InputId>
-      </InputIdBox>
-      <InputPasswordBox>
-        <InputTitle>
-          비밀번호*
-        </InputTitle>
-        <InputPassword
-          type="password"
-          name="inputPassword"
-          placeholder='비밀번호를 입력하세요.'
-        >
-
-        </InputPassword>
-      </InputPasswordBox>
-      <InputPhoneNumBox>
-        <InputTitle>
-          전화번호*
-        </InputTitle>
-        <InputPhoneNum
-          type="text"
-          name="inputPhoneNum"
-          placeholder="전화번로를 입력하세요."
-        >
-        </InputPhoneNum>
-      </InputPhoneNumBox>
-      <InputEmailBox>
-        <InputTitle>
-          이메일*
-        </InputTitle>
-        <InputEmail
-          type="text"
-          name="inputEmail"
-          placeholder="이메일을 입력하세요."
-        >
-
-        </InputEmail>
-      </InputEmailBox>
-      <InputFavBox>
-        <InputTitle>
-          선호 브랜드
-        </InputTitle>
-        <InputFav
-          type="text"
-          name="inputPhoneNum"
-          placeholder="선호브랜드를 입력하세요. 예) 나이키, 아디다스"
+          placeholder={userInfo.favBrand}
         >
 
         </InputFav>
@@ -167,8 +77,8 @@ const SignupDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 `
 
 const Logo = styled(Link)`
@@ -182,7 +92,7 @@ const Logo = styled(Link)`
 `
 
 const InputNameBox = styled.div`
-  margin-top: 80px;
+  margin-top: 20px;
   `
 
 const InputIdBox = styled.div`
@@ -283,4 +193,10 @@ const SignupBtn = styled.button`
   cursor: pointer;
   `
 
-export default Signup;
+const Button = styled.button`
+background-color: white;
+border: none;
+font-size: 20px;
+cursor: pointer;`
+
+export default SetProfile;

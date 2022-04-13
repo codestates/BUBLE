@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   return (
     <LoginDiv>
-      <Logo>
+      <Logo to="/">
         BUBLE
       </Logo>
       <InputIdBox>
@@ -31,7 +31,7 @@ const Login = () => {
 
         </InputPassword>
       </InputPasswordBox>
-      <Signup>회원가입</Signup>
+      <Link to="/signup"><Signup >회원가입</Signup></Link>
       <LoginBtn>
         로그인
       </LoginBtn>
@@ -50,7 +50,9 @@ const LoginDiv = styled.div`
   align-items: center;
 `
 
-const Logo = styled.div`
+const Logo = styled(Link)`
+  color: black;
+  text-decoration-line: none;
   font-size: 50px;
   font-weight: 600;
   font-style: italic;

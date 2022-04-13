@@ -30,7 +30,8 @@ const Brand = () => {
         <BrandContainer>
             <Top>
                 <Area>
-                    <FavDiv>Preferred
+                    <FavDiv>
+                        Preferred
                         <FavDivBottom>
                             선호 등록 상품
                         </FavDivBottom>
@@ -216,25 +217,25 @@ const Landing = () => {
                 <Footer />
             </LandingBottom>
         </LandingDiv>
-    )
+    );
+};
 
-
-}
-
-const LandingDiv = styled.div`
-`
+const LandingDiv = styled.div``;
 const LandingTop = styled.div`
-    width: 100%;
-    height: 200px;
-`
+  width: 100%;
+  height: 200px;
+`;
 const LandingMiddle = styled.div`
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 1200px;
-`
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 1200px;
+`;
 const LandingBottom = styled.div`
-    width: 100%;
-`
+  width: 100%;
+`;
+
+
+
 export default Landing;

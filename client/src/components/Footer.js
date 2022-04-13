@@ -81,6 +81,7 @@ const FooterDiv = styled.footer`
   flex-direction: column;
   // background-color: white;
   padding: 32px;
+  margin-top: 30px;
 `;
 
 const Top = styled.section`

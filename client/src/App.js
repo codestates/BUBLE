@@ -5,22 +5,26 @@ import Login from "./pages/Login/Login"
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
 import Landing from './pages/Landing/Landing';
+import Basket from './pages/Basket/Basket';
 import { BrowserRouter as Router, Switch as Routes, Route } from 'react-router-dom';
 
 function App() {
   // const [token, setToken] = useState("");
   // const [isLogin, setIsLogin] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
+  const userInfo = { userName: "ghoo", password: "1234", email: "dbhjsdbj", phoneNumber: "123-213", favBrand: "나이키" }
+
+
 
   return (
     <Router>
       <div className="App">
-
         <Routes>
           <Route exact path="/"><Landing /></Route>
           <Route path="/login"><Login /></Route>
+          <Route path="/signup"><Signup /></Route>
+          <Route path="/mypage"><Mypage userInfo={userInfo} /></Route>
         </Routes>
-
       </div>
     </Router>
 
