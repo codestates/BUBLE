@@ -16,6 +16,12 @@ function App() {
       {/* {isLoading && <Loding/>} */}
       {/* 안녕 */}
 
+      {console.log(isLogin)}
+
+      <Header isLogin={isLogin} />
+      <Mypage userinfo={userinfo} />
+      <Footer />
+
       {isLogin ? (
         <Mypage userinfo={userinfo} />
       ) : (
@@ -26,10 +32,7 @@ function App() {
           isLogin={isLogin}
         />
       )}
-      {console.log(isLogin)}
-      <Header isLogin={isLogin} />
-      <Signup />
-      <Footer />
+
       {/* <Landing /> */}
 
       {/* <Basket></Basket> */}
