@@ -1,14 +1,13 @@
-const { buyCart, Sequelize } = require('../../models');
+const { buyCart } = require('../../models');
 const { Item } = require('../../models');
+const { user } = require('../../models');
 const { Op } = require('sequelize');
+const { isAuthorized } = require('../tokenFunctions');
 
 module.exports = {
   get: async (req, res) => {
     try {
       const { userid } = req.params;
-
-      // TODO: authentication 함수 사용
-      // i.e. const userInfo = await isAuthorized(req)
 
       // :userid가 숫자가 아니면 다음을 리턴
       if (isNaN(userid)) {
@@ -16,33 +15,45 @@ module.exports = {
         return;
       }
 
-      // 숫자가 맞으면
+      // TODO: authentication 함수 사용
+      const data = isAuthorized(req);
+
+      const { email: userEmail } = await user.findOne({
+        where: { id: userid },
+      });
+
+      console.log(userEmail);
+
+      // 현재 회원이 조회할 권한이 없는 경우
+      if (!data || data !== userEmail) {
+        res.status(403).json({ message: 'Not authorized!' });
+        return;
+      }
+
       if (userid) {
-        console.log(userid);
         const buyCartInfo = await buyCart.findAll({
           where: { userId: userid },
         });
 
-        // console.log(buyCartInfo);
-        // buyCartInfo가 빈배열이면 다음을 리턴
-        if (!buyCartInfo.length) {
+        // .then((res) => {
+        //   const { rows, count } = res;
+        //   if (count > 0) {
+        //     return rows.map((el) => el.itemId);
+        //   }
+        // });
+
+        if (buyCartInfo.length) {
+          const itemId = buyCartInfo.map((el) => el.itemId);
+          const itemInfo = await Item.findAll({
+            where: { id: { [Op.in]: itemId } },
+            attributes: ['id', 'grade', 'size', 'itemName'],
+          });
+
+          res.status(200).json({ message: itemInfo });
+        } else {
+          // buyCartInfo가 없으면
           res.status(404).json({ message: 'Not Found!' });
-          return;
         }
-        // console.log(userInfo);
-        // 빈 배일이 아니면
-        const itemId = [];
-        buyCartInfo.map((el) => {
-          itemId.push(el.itemId);
-        });
-
-        // 배열에서 아이템 찾는법
-        const itemInfo = await Item.findAll({
-          where: { id: { [Op.in]: itemId } },
-          attributes: ['grade', 'size', 'itemName'],
-        });
-
-        res.send({ message: itemInfo });
       }
     } catch (err) {
       console.error(err);
@@ -51,8 +62,42 @@ module.exports = {
     }
   },
   post: async (req, res) => {
-    console.log(req.body);
+    try {
+      // TODO: authentication 함수 사용
 
-    res.end('like post요청!');
+      const { userid, itemid } = req.body;
+      const { userid: paramid } = req.params;
+
+      if (!userid || !itemid) {
+        res.status(400).json({ message: 'Bad Request!' });
+        return;
+      }
+      const data = isAuthorized(req);
+
+      console.log('data========', data);
+
+      const { email: userEmail } = await user.findOne({
+        where: { id: paramid },
+      });
+      console.log(userEmail === data);
+
+      // 현재 회원이 조회할 권한이 없는 경우
+      if (!data || data !== userEmail) {
+        res.status(403).json({ message: 'Not authorized!' });
+        return;
+      }
+
+      const insertIntoBuyCarts = await buyCart.create({
+        userId: userid,
+        itemId: itemid,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+
+      res.status(201).json({ message: insertIntoBuyCarts });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Server error!' });
+    }
   },
 };

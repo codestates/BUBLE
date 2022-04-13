@@ -13,6 +13,8 @@ module.exports = async (req, res) => {
     where: { email: email, password: password },
   });
 
+  console.log(userInfo);
+
   if (userInfo) {
     const { id, userName, phoneNumber, favBrand } = userInfo;
 

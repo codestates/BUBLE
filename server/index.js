@@ -14,6 +14,10 @@ app.use(cookieParser());
 app.use(cors());
 app.use('/', indexRouter);
 
+// /order, user (routes/index.js)
+// /:user_id/buy,sell,borrow 한 곳에? post에 따라? getdp Efk?
+// /signout, signin, signup
+
 https
   .createServer(
     {
