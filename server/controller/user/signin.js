@@ -22,24 +22,18 @@ module.exports = async (req, res) => {
 
     console.log(accessToken);
 
-    res
-      .status(200)
-      .cookie('refreshToken', refreshToken, {
-        // httpOnly: true,
-        // secure: true,
-      })
-      .send({
-        //cookie로 토큰 여러개 보낼 수 없어서 응답으로 보낸 다음 -> 클라에서 localStorage.setItem('accessToken', accessToken)
-        data: {
-          id,
-          userName,
-          phoneNumber,
-          favBrand,
-          email,
-          password,
-        },
-        accessToken: accessToken,
-      });
+    res.status(200).send({
+      //cookie로 토큰 여러개 보낼 수 없어서 응답으로 보낸 다음 -> 클라에서 localStorage.setItem('accessToken', accessToken)
+      data: {
+        id,
+        userName,
+        phoneNumber,
+        favBrand,
+        email,
+        password,
+      },
+      accessToken: accessToken,
+    });
   } else {
     res.status(401).send('invalid user or wrong password');
   }
