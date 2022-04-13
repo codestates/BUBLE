@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import styled from 'styled-components';
 
-const Header = () => {
+const Header = ({ isLogin, handleSignout }) => {
   return (
     <HeaderDiv>
       <HeaderTop>
@@ -14,7 +13,11 @@ const Header = () => {
           <Notice>고객센터</Notice>
           <Wish>관심상품</Wish>
           <Mypage>마이페이지</Mypage>
-          <Login>Login</Login>
+          {isLogin ? (
+            <Login onClick={handleSignout}>Logout</Login>
+          ) : (
+            <Login>Login</Login>
+          )}
         </IconGroup>
       </HeaderTop>
     </HeaderDiv>

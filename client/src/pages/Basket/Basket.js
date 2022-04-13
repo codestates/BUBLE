@@ -1,14 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import Header from '../../components/Headers';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
 function Basket({ buyCartsGet, handlebuyCarts }) {
   const [isOne, setisOne] = useState(false);
-
   const isTwo = !isOne;
+
+  useEffect(() => {
+    handleSignout();
+  }, []);
+
+  const handleSignout = async () => {
+    const accessToken = window.localStorage.getItem('accessToken');
+    console.log('signout :', accessToken);
+    if (accessToken) {
+      window.localStorage.removeItem('accessToken');
+    } //accessToken삭제
+    //cookie에서 refreshToken 삭제 필요
+    let answer = await axios({
+      url: 'https://localhost:4000/users/signout',
+      method: 'POST', // or 'PUT'
+      // data can be `string` or {object}!
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `jwt ${accessToken}`,
+      },
+    }).then((res) => console.log(res.data));
+  };
 
   const CheckBox = function Checks() {
     const CheckHandler = () => {
