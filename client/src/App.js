@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Footer from "./components/Footer";
 import Header from "./components/Header"
-import Login from "./pages/Login"
-import Signup from './pages/Signup';
-import Mypage from './pages/Mypage';
+import Login from "./pages/Login/Login"
+import Signup from './pages/Signup/Signup';
+import Mypage from './pages/Mypage/Mypage';
 
 function App() {
   const [token, setToken] = useState("");

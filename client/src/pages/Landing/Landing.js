@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from '@fortawesome/fontawesome'
 import { faCaretDown  } from '@fortawesome/free-solid-svg-icons';

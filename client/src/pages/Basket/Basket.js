@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
-import Footer from "../components/Footer";
-import Header from '../components/Header';
+import Footer from "../../components/Footer";
+import Header from '../../components/Header';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
