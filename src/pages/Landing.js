@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+<<<<<<< HEAD
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {ViewMore} from "../components/ViewMore"
@@ -193,3 +194,7 @@ const LandingBottom = styled.div`
     /* background-color: grey ; */
 `
 export default Landing;
+=======
+
+
+>>>>>>> edaf132 (test2)
