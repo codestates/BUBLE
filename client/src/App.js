@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
+import Basket from './pages/Basket/Basket';
 import Landing from './pages/Landing/Landing';
 function App() {
   const [token, setToken] = useState('');
@@ -16,7 +18,6 @@ function App() {
       {/* 안녕 */}
       {/* <Login/> */}
       <Landing />
-      {/* <Basket></Basket> */}
       {/* <NotFound/> */}
       {/* <Footer/> */}
       {/* <BrowserRouter>
