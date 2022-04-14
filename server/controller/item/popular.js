@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 function getRandomNum() {
   let arr = [];
   for (let i = 0; i < 4; i++) {
-    arr.push(Math.floor(Math.random() * (300 + 1)));
+    arr.push(Math.floor(Math.random() * 300) + 1);
   }
   return arr;
 }
@@ -14,6 +14,7 @@ module.exports = {
     try {
       // 랜덤 함수 사용
       const randomItem = await getRandomNum();
+      console.log(randomItem);
 
       const itemInfo = await Item.findAll({
         where: { id: { [Op.in]: randomItem } },
