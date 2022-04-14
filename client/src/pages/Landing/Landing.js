@@ -24,7 +24,6 @@ const Brand = ({ popularItem, handleClick }) => {
           <ProductContent>{item.itemName}</ProductContent>
           <ProductPrice>{item.buyPrice}</ProductPrice>
           <Productnow>{item.buyPrice}</Productnow>
-          <Productnow>{item.size}</Productnow>
         </ProductInfo>
       </ProductDiv>
     );
@@ -40,7 +39,7 @@ const Brand = ({ popularItem, handleClick }) => {
           </FavDiv>
         </Area>
         {popularItem.map((item) => {
-          console.log(item);
+          // console.log(item);
           return <Div>{products(item)}</Div>;
         })}
       </Top>
@@ -203,7 +202,7 @@ const PopularDivBottom = styled.div`
 // 랜딩 페이지
 const Landing = ({ userinfo }) => {
   const [popularItem, setPopularItem] = useState([]);
-  console.log(popularItem);
+  // console.log(popularItem);
 
   useEffect(() => {
     handlePopularItem();
