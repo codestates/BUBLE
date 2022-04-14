@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 
 function getRandomNum() {
   let arr = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 16; i++) {
     arr.push(Math.floor(Math.random() * (300 + 1)));
   }
   return arr;
@@ -17,7 +17,6 @@ module.exports = {
 
       const itemInfo = await Item.findAll({
         where: { id: { [Op.in]: randomItem } },
-        attributes: ['id', 'img', 'itemName', 'buyPrice'],
       });
 
       res.status(200).json({ popular: itemInfo });
