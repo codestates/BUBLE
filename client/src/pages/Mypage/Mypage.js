@@ -16,10 +16,10 @@ const Mypage = ({ userInfo }) => {
   const [page, setPage] = useState('회원 정보');
 
   const userHandler = () => {
-    if (!update) {
-      return <SetProfile userInfo={userInfo} setUpdate={setUpdate} />
-    } else {
+    if (update) {
       return <Profile userInfo={userInfo} setUpdate={setUpdate} />
+    } else {
+      return <SetProfile userInfo={userInfo} setUpdate={setUpdate} />
     }
   }
 

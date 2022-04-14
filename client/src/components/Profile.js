@@ -10,7 +10,7 @@ const Profile = ({ userInfo, setUpdate }) => {
             </Button>
             <InputNameBox>
                 <InputTitle>
-                    이름*
+                    이름
                 </InputTitle>
                 <InputName>
                     {userInfo.userName}
@@ -18,7 +18,7 @@ const Profile = ({ userInfo, setUpdate }) => {
             </InputNameBox>
             <InputEmailBox>
                 <InputTitle>
-                    이메일*
+                    이메일
                 </InputTitle>
                 <InputName>
                     {userInfo.email}
@@ -26,7 +26,7 @@ const Profile = ({ userInfo, setUpdate }) => {
             </InputEmailBox>
             <InputPasswordBox>
                 <InputTitle>
-                    비밀번호*
+                    비밀번호
                 </InputTitle>
                 <InputName>
                     {userInfo.password}
@@ -34,7 +34,7 @@ const Profile = ({ userInfo, setUpdate }) => {
             </InputPasswordBox>
             <InputPhoneNumBox>
                 <InputTitle>
-                    전화번호*
+                    전화번호
                 </InputTitle>
                 <InputName>
                     {userInfo.phoneNumber}
