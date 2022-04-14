@@ -2,26 +2,24 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import axios from 'axios'
+import axios from 'axios';
 import Signup from '../Signup/Signup';
 import Profile from '../../components/Profile';
 import SetProfile from '../../components/SetProfile';
 
-
 const Mypage = ({ userInfo }) => {
-
   const [update, setUpdate] = useState(true);
-  console.log(update)
+  console.log(update);
 
   const [page, setPage] = useState('회원 정보');
 
   const userHandler = () => {
     if (update) {
-      return <Profile userInfo={userInfo} setUpdate={setUpdate} />
+      return <Profile userInfo={userInfo} setUpdate={setUpdate} />;
     } else {
-      return <SetProfile userInfo={userInfo} setUpdate={setUpdate} />
+      return <SetProfile userInfo={userInfo} setUpdate={setUpdate} />;
     }
-  }
+  };
 
   const getHistory = async (endpoint) => {
     if (!userInfo) {
@@ -52,8 +50,6 @@ const Mypage = ({ userInfo }) => {
     }
   }, [page]);
 
-
-
   const BasketBodyContent = function BBC() {
     return (
       <BodyDiv>
@@ -63,33 +59,27 @@ const Mypage = ({ userInfo }) => {
           <ContentSize>265</ContentSize>
           <ContentGrade>S</ContentGrade>
         </BodyDivContent>
-        <BodyDivPrice>      won</BodyDivPrice>
+        <BodyDivPrice> won</BodyDivPrice>
       </BodyDiv>
-    )
-  }
+    );
+  };
 
   return (
     <div>
       <Header />
       <MypageDiv>
         <SideBar>
-          <BuyList onClick={() => setPage('구매 내역')}>
-            구매 내역
-          </BuyList>
-          <SellList onClick={() => setPage('판매 내역')}>
-            판매 내역
-          </SellList>
-          <UserInfo onClick={() => setPage('회원 정보')}>
-            회원 정보
-          </UserInfo>
+          <BuyList onClick={() => setPage('구매 내역')}>구매 내역</BuyList>
+          <SellList onClick={() => setPage('판매 내역')}>판매 내역</SellList>
+          <UserInfo onClick={() => setPage('회원 정보')}>회원 정보</UserInfo>
         </SideBar>
         <DetailList>
           <DetailBuyList>
-            <ParentTitle>
-              {page}
-            </ParentTitle>
+            <ParentTitle>{page}</ParentTitle>
             <List>
-              {page === "회원 정보" ? userHandler() :
+              {page === '회원 정보' ? (
+                userHandler()
+              ) : (
                 <div>
                   {BasketBodyContent()}
                   {BasketBodyContent()}
@@ -97,28 +87,27 @@ const Mypage = ({ userInfo }) => {
                   {BasketBodyContent()}
                   {BasketBodyContent()}
                 </div>
-              }
+              )}
             </List>
           </DetailBuyList>
-
         </DetailList>
       </MypageDiv>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 const MypageDiv = styled.div`
   width: auto;
   display: flex;
-  `
+`;
 
 const SideBar = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   border-right: 1px solid black;
-  `
+`;
 const BuyList = styled.button`
   border: none;
   width: 200px;
@@ -127,11 +116,10 @@ const BuyList = styled.button`
   font-size: 20px;
   color: #bcbcbc;
   cursor: pointer;
-  `
-const SellList = styled(BuyList)``
-const BorrowList = styled(BuyList)``
-const UserInfo = styled(BuyList)``
-
+`;
+const SellList = styled(BuyList)``;
+const BorrowList = styled(BuyList)``;
+const UserInfo = styled(BuyList)``;
 
 const DetailList = styled.div`
   margin-left: 50px;
@@ -139,99 +127,96 @@ const DetailList = styled.div`
   flex-direction: column;
   width: 75vw;
   height: auto;
-`
+`;
 const DetailBuyList = styled.div`
-    display: flex;
-    flex-direction: column;
-  `
+  display: flex;
+  flex-direction: column;
+`;
 
-const DetailSellList = styled(DetailBuyList)``
-const DetailBorrowList = styled(DetailBuyList)``
-const DetailUserInfo = styled(DetailBuyList)``
+const DetailSellList = styled(DetailBuyList)``;
+const DetailBorrowList = styled(DetailBuyList)``;
+const DetailUserInfo = styled(DetailBuyList)``;
 
 const ParentTitle = styled.div`
   font-size: 30px;
   border-bottom: 1px solid black;
-  `
+`;
 const Title = styled(ParentTitle)`
   margin-top: 80px;
-  `
+`;
 const List = styled.div`
   margin-top: 20px;
   height: auto;
-/* border: 1px solid black; */
-/* align-items: center;
+  /* border: 1px solid black; */
+  /* align-items: center;
 justify-content: center;
 text-align: center; */
+`;
 
-`
-
-
-
-
-const BodyDiv = styled.div`// Body의 자식
-/* display: inline-block ; */
-border-bottom: 1px solid #bcbcbc;
-display:flex ;
-height: 20vh;
-place-items: center;
-margin-top: 20px;
-/* align-items: center; */
-/* flex-direction:column; */
-`
+const BodyDiv = styled.div`
+  // Body의 자식
+  /* display: inline-block ; */
+  border-bottom: 1px solid #bcbcbc;
+  display: flex;
+  height: 20vh;
+  place-items: center;
+  margin-top: 20px;
+  /* align-items: center; */
+  /* flex-direction:column; */
+`;
 
 const BodyDivImg = styled.div`
-height: 8em;
-border: 1px solid grey;
-border-radius: 6%;
-width: 8vw; 
-margin-left:1.5vw;
-`
+  height: 8em;
+  border: 1px solid grey;
+  border-radius: 6%;
+  width: 8vw;
+  margin-left: 1.5vw;
+`;
 const BodyDivContent = styled.div`
-display:inline ;
-/* vertical-align: center; */
-/* border: 1px solid black; */
-/* border-radius: 10%; */
-height: 8em;
-width: 25%; 
-text-align: start;
-padding-top: 5px;
-margin-left: 20px;
-`
+  display: inline;
+  /* vertical-align: center; */
+  /* border: 1px solid black; */
+  /* border-radius: 10%; */
+  height: 8em;
+  width: 25%;
+  text-align: start;
+  padding-top: 5px;
+  margin-left: 20px;
+`;
 const ContentName = styled.p`
-/* border: 1px solid black; */
-/* margin-top: 1px; */
-margin:0.3em ;
-border-bottom: 1px solid #bcbcbc;
-vertical-align:center;
-height: 2em ;
-`
+  /* border: 1px solid black; */
+  /* margin-top: 1px; */
+  margin: 0.3em;
+  border-bottom: 1px solid #bcbcbc;
+  vertical-align: center;
+  height: 2em;
+`;
 const ContentSize = styled.p`
-margin:0.3em ;
-border-bottom: 1px solid #bcbcbc;
-/* border: 1px solid black; */
-vertical-align:center;
-height: 2em ;
-`
+  margin: 0.3em;
+  border-bottom: 1px solid #bcbcbc;
+  /* border: 1px solid black; */
+  vertical-align: center;
+  height: 2em;
+`;
 const ContentGrade = styled.p`
-margin:0.3em ;
-border-bottom: 1px solid #bcbcbc;
-/* border: 1px solid black; */
-vertical-align:center;
-height: 2em ;
-`
+  margin: 0.3em;
+  border-bottom: 1px solid #bcbcbc;
+  /* border: 1px solid black; */
+  vertical-align: center;
+  height: 2em;
+`;
 const BodyDivPrice = styled.p`
-display:inline ;
-margin-left:1.5vw;
-margin-top: 6.5em;
-border-bottom: 1px solid #bcbcbc;
-/* border: 1px solid black; */
-height: 1em;
-width: 15%; 
-vertical-align:center;
-text-align: right;
-flex-direction:column;
-color: #333333;
-`
+  display: inline;
+  margin-left: 1.5vw;
+  margin-top: 6.5em;
+  border-bottom: 1px solid #bcbcbc;
+  /* border: 1px solid black; */
+  height: 1em;
+  width: 15%;
+  vertical-align: center;
+  text-align: right;
+  flex-direction: column;
+  color: #333333;
+`;
 
 export default Mypage;

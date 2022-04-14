@@ -12,59 +12,58 @@ import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트 
 const Brand = () => {
-    const products = function product() {
-        return (
-            <ProductDiv>
-                <ProductImage />
-                <ProductMark><FontAwesomeIcon icon={faBookmark} className='mark' /></ProductMark>
-                <ProductInfo>
-                    <ProductName>Nike</ProductName>
-                    <ProductContent>super joden limited</ProductContent>
-                    <ProductPrice>320,000원</ProductPrice>
-                    <Productnow>즉시 구매가</Productnow>
-                </ProductInfo>
-            </ProductDiv>
-        )
-    }
+  const products = function product() {
     return (
-        <BrandContainer>
-            <Top>
-                <Area>
-                    <FavDiv>
-                        Preferred
-                        <FavDivBottom>
-                            선호 등록 상품
-                        </FavDivBottom>
-                    </FavDiv>
-                </Area>
-                <Div>
-                    {products()}
-                    {products()}
-                    {products()}
-                    {products()}
-                </Div>
-            </Top>
-            <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
-
-            <Bottom>
-                <Area>
-                    <PopularDiv>Popular
-                        <PopularDivBottom>
-                            인기 등록 상품
-                        </PopularDivBottom>
-                    </PopularDiv>
-                </Area>
-                <Div>
-                    {products()}
-                    {products()}
-                    {products()}
-                    {products()}
-                </Div>
-            </Bottom>
-            <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
-        </BrandContainer>
-
+      <ProductDiv>
+        <ProductImage />
+        <ProductMark><FontAwesomeIcon icon={faBookmark} className='mark' /></ProductMark>
+        <ProductInfo>
+          <ProductName>Nike</ProductName>
+          <ProductContent>super joden limited</ProductContent>
+          <ProductPrice>320,000원</ProductPrice>
+          <Productnow>즉시 구매가</Productnow>
+        </ProductInfo>
+      </ProductDiv>
     )
+  }
+  return (
+    <BrandContainer>
+      <Top>
+        <Area>
+          <FavDiv>Preferred
+            <FavDivBottom>
+              선호 등록 상품
+            </FavDivBottom>
+          </FavDiv>
+        </Area>
+        <Div>
+          {products()}
+          {products()}
+          {products()}
+          {products()}
+        </Div>
+      </Top>
+      <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
+
+      <Bottom>
+        <Area>
+          <PopularDiv>Popular
+            <PopularDivBottom>
+              인기 등록 상품
+            </PopularDivBottom>
+          </PopularDiv>
+        </Area>
+        <Div>
+          {products()}
+          {products()}
+          {products()}
+          {products()}
+        </Div>
+      </Bottom>
+      <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
+    </BrandContainer>
+
+  )
 }
 //<FontAwesomeIcon icon="fa-solid fa-caret-down" />
 // const = styled.``
@@ -205,37 +204,37 @@ font-size: 12px ;
 
 // 랜딩 페이지
 const Landing = () => {
-    return (
-        <LandingDiv>
-            <LandingTop>
-                <Header />
-            </LandingTop>
-            <LandingMiddle>
-                <Brand />
-            </LandingMiddle>
-            <LandingBottom>
-                <Footer />
-            </LandingBottom>
-        </LandingDiv>
-    );
-};
+  return (
+    <LandingDiv>
+      <LandingTop>
+        <Header />
+      </LandingTop>
+      <LandingMiddle>
+        <Brand />
+      </LandingMiddle>
+      <LandingBottom>
+        <Footer />
+      </LandingBottom>
+    </LandingDiv>
+  )
 
-const LandingDiv = styled.div``;
+
+}
+
+const LandingDiv = styled.div`
+`
 const LandingTop = styled.div`
-  width: 100%;
-  height: 200px;
-`;
+    width: 100%;
+    height: 200px;
+`
 const LandingMiddle = styled.div`
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 1200px;
-`;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1200px;
+`
 const LandingBottom = styled.div`
-  width: 100%;
-`;
-
-
-
+    width: 100%;
+`
 export default Landing;
