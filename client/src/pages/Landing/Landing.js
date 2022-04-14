@@ -1,31 +1,88 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState } from 'react';
 // import fontawesome from '@fortawesome/fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 // import {ViewMore} from "../components/ViewMore"
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트
-const Brand = () => {
-  const products = function product() {
+const Brand = ({
+  popularItem,
+  favItem,
+  handleClickPopular,
+  handleClickFav,
+  userInfo,
+  handlePostbuyCarts,
+}) => {
+  const { id: userId } = userInfo;
+  const popularItems = ({ popularItem, handlePostbuyCarts }) => {
     return (
-      <ProductDiv>
-        <ProductImage />
-        <ProductMark>
-          <FontAwesomeIcon icon={faBookmark} className="mark" />
-        </ProductMark>
-        <ProductInfo>
-          <ProductName>Nike</ProductName>
-          <ProductContent>super joden limited</ProductContent>
-          <ProductPrice>320,000원</ProductPrice>
-          <Productnow>즉시 구매가</Productnow>
-        </ProductInfo>
-      </ProductDiv>
+      <>
+        {popularItem.map((el) => {
+          return (
+            <Div>
+              {el.map((el) => {
+                return (
+                  <ProductDiv>
+                    <ProductImage
+                      el={el}
+                      id={userId}
+                      data-value={el.id}
+                      onClick={(e) => handlePostbuyCarts(e)}
+                    ></ProductImage>
+                    <ProductMark>
+                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    </ProductMark>
+                    <ProductInfo>
+                      <ProductName>{el.brand}</ProductName>
+                      <ProductContent>{el.itemName}</ProductContent>
+                      <ProductPrice>{el.buyPrice}</ProductPrice>
+                      <Productnow>즉시구매가</Productnow>
+                    </ProductInfo>
+                  </ProductDiv>
+                );
+              })}
+            </Div>
+          );
+        })}
+      </>
     );
   };
+
+  const favItems = ({ favItem }) => {
+    return (
+      <>
+        {favItem.map((el) => {
+          return (
+            <Div>
+              {el.map((el) => {
+                return (
+                  <ProductDiv>
+                    <ProductImage el={el} id={el}></ProductImage>
+                    <ProductMark>
+                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    </ProductMark>
+                    <ProductInfo>
+                      <ProductName>{el.brand}</ProductName>
+                      <ProductContent>{el.itemName}</ProductContent>
+                      <ProductPrice>{el.buyPrice}</ProductPrice>
+                      <Productnow>즉시구매가</Productnow>
+                    </ProductInfo>
+                  </ProductDiv>
+                );
+              })}
+            </Div>
+          );
+        })}
+      </>
+    );
+  };
+
   return (
     <BrandContainer>
       <Top>
@@ -35,14 +92,9 @@ const Brand = () => {
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        <Div>
-          {products()}
-          {products()}
-          {products()}
-          {products()}
-        </Div>
+        {favItems({ favItem, handlePostbuyCarts })}
       </Top>
-      <Morebtn>
+      <Morebtn id={userId} onClick={(e) => handleClickFav(e)}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
       </Morebtn>
@@ -54,14 +106,9 @@ const Brand = () => {
             <PopularDivBottom>인기 등록 상품</PopularDivBottom>
           </PopularDiv>
         </Area>
-        <Div>
-          {products()}
-          {products()}
-          {products()}
-          {products()}
-        </Div>
+        {popularItems({ popularItem, handlePostbuyCarts })}
       </Bottom>
-      <Morebtn>
+      <Morebtn onClick={() => handleClickPopular()}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
       </Morebtn>
@@ -122,6 +169,10 @@ const ProductInfo = styled.div`
   height: 100px;
 `;
 const ProductImage = styled.div`
+  background-image: url(${(props) => `${props.el.img}`});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 3%;
   border: 1px solid whitesmoke;
   width: 100%;
@@ -195,14 +246,120 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = ({ isLogin }) => {
+const Landing = ({ userInfo }) => {
+  const [popularItem, setPopularItem] = useState([]);
+  const [favItem, setFavItem] = useState([]);
+  useEffect(() => {
+    handlePopularItem();
+    handleFavItem(userInfo);
+  }, []);
+
+  const handleClickPopular = async () => {
+    await axios({
+      url: `https://localhost:4000/items/popular`,
+      method: 'get',
+    }).then((res) => {
+      const { popular } = res.data;
+      console.log(popular);
+      setPopularItem([...popularItem, [...popular]]);
+    });
+  };
+
+  const handleClickFav = async (e) => {
+    let { id } = e.target;
+    id = Number(id);
+    const accessToken = window.localStorage.getItem('accessToken');
+    await axios({
+      url: `https://localhost:4000/items/${id}/fav`,
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `jwt ${accessToken}`,
+      },
+    }).then((res) => {
+      const { message } = res.data;
+      // console.log(message);
+      const { length } = message;
+      let randomItem = [];
+
+      for (let i = 0; i < 4; i++) {
+        let index = Math.floor(Math.random() * length);
+        randomItem.push(message[index]);
+        // index = [index];
+        // index.forEach((el) => randomItem.push(message[el]));
+      }
+      console.log(randomItem);
+
+      setFavItem([...favItem, [...randomItem]]);
+    });
+  };
+
+  const handlePopularItem = async () => {
+    await axios({
+      url: `https://localhost:4000/items/popular`,
+      method: 'get',
+    }).then((res) => {
+      const { popular } = res.data;
+      setPopularItem([popular]);
+    });
+  };
+
+  const handleFavItem = async ({ id }) => {
+    id = Number(id);
+    const accessToken = window.localStorage.getItem('accessToken');
+    await axios({
+      url: `https://localhost:4000/items/${id}/fav`,
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `jwt ${accessToken}`,
+      },
+    }).then((res) => {
+      const { message } = res.data;
+      let arr = [];
+      for (let i = 0; i < 4; i++) {
+        arr.push(message[i]);
+      }
+
+      setFavItem([arr]);
+    });
+  };
+
+  // TODO: postBuyCarts
+  const handlePostbuyCarts = async (e) => {
+    // id = Number(id);
+    const { id } = e.target;
+    const { value } = e.target.dataset;
+    const accessToken = window.localStorage.getItem('accessToken');
+
+    await axios({
+      url: `https://localhost:4000/likes/${id}/buy`,
+      method: 'POST',
+      data: { userid: id, itemid: value },
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `jwt ${accessToken}`,
+      },
+    }).then((res) => {
+      const { message } = res.data;
+      console.log(message);
+    });
+  };
+
   return (
     <LandingDiv>
       <LandingTop>
-        <Header isLogin={isLogin} />
+        <Header />
       </LandingTop>
       <LandingMiddle>
-        <Brand />
+        <Brand
+          popularItem={popularItem}
+          favItem={favItem}
+          handleClickPopular={handleClickPopular}
+          handleClickFav={handleClickFav}
+          userInfo={userInfo}
+          handlePostbuyCarts={handlePostbuyCarts}
+        />
       </LandingMiddle>
       <LandingBottom>
         <Footer />
@@ -226,5 +383,4 @@ const LandingMiddle = styled.div`
 const LandingBottom = styled.div`
   width: 100%;
 `;
-
 export default Landing;
