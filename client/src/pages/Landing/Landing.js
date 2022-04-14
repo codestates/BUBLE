@@ -8,24 +8,40 @@ import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 // import {ViewMore} from "../components/ViewMore"
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
 
+// fav-brand 와 popular-brand를 넣어줄 컴포넌트
+const Brand = ({ popularItem, handleClick }) => {
+  const [list, setList] = useState();
+  const products = (popularItem) => {
+    console.log(popularItem);
 
-
-// fav-brand 와 popular-brand를 넣어줄 컴포넌트 
-const Brand = () => {
-  const products = function product() {
     return (
-      <ProductDiv>
-        <ProductImage />
-        <ProductMark><FontAwesomeIcon icon={faBookmark} className='mark' /></ProductMark>
-        <ProductInfo>
-          <ProductName>Nike</ProductName>
-          <ProductContent>super joden limited</ProductContent>
-          <ProductPrice>320,000원</ProductPrice>
-          <Productnow>즉시 구매가</Productnow>
-        </ProductInfo>
-      </ProductDiv>
-    )
-  }
+      <>
+        {popularItem.map((el) => {
+          return (
+            <Div>
+              {el.map((el) => {
+                return (
+                  <ProductDiv>
+                    <ProductImage el={el}></ProductImage>
+                    <ProductMark>
+                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    </ProductMark>
+                    <ProductInfo>
+                      <ProductName>{el.brand}</ProductName>
+                      <ProductContent>{el.itemName}</ProductContent>
+                      <ProductPrice>{el.buyPrice}</ProductPrice>
+                      <Productnow>즉시구매가</Productnow>
+                    </ProductInfo>
+                  </ProductDiv>
+                );
+              })}
+            </Div>
+          );
+        })}
+      </>
+    );
+  };
+
   return (
     <BrandContainer>
       <Top>
@@ -36,12 +52,11 @@ const Brand = () => {
             </FavDivBottom>
           </FavDiv>
         </Area>
-        <Div>
-          {products()}
-          {products()}
-          {products()}
-          {products()}
-        </Div>
+        {products(popularItem)}
+
+        {/* {products()}
+        {products()}
+        {products()} */}
       </Top>
       <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
 
@@ -54,10 +69,11 @@ const Brand = () => {
           </PopularDiv>
         </Area>
         <Div>
+          {products(popularItem)}
+          {/* {products()}
           {products()}
           {products()}
-          {products()}
-          {products()}
+          {products()} */}
         </Div>
       </Bottom>
       <Morebtn>더보기<FontAwesomeIcon icon={faCaretDown} className='more' /></Morebtn>
@@ -124,11 +140,15 @@ width: 100%;
 height: 100px;
 `
 const ProductImage = styled.div`
-border-radius: 3% ;
-border: 1px solid whitesmoke;
-width: 100%;
-height: 250px;
-`
+  background-image: url(${(props) => `${props.el.img}`});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 3%;
+  border: 1px solid whitesmoke;
+  width: 100%;
+  height: 250px;
+`;
 const ProductMark = styled.div`
 font-size: 15px ;
 `
@@ -201,6 +221,25 @@ font-size: 12px ;
 `
 
 
+const handleClick = async () => {
+  await axios({
+    url: `https://localhost:4000/items/popular`,
+    method: 'get',
+  }).then((res) => {
+    const { popular } = res.data;
+    setPopularItem([...popularItem, [...popular]]);
+  });
+};
+
+const handlePopularItem = async () => {
+  await axios({
+    url: `https://localhost:4000/items/popular`,
+    method: 'get',
+  }).then((res) => {
+    const { popular } = res.data;
+    setPopularItem([popular]);
+  });
+};
 
 // 랜딩 페이지
 const Landing = () => {
