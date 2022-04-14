@@ -60,10 +60,11 @@ function Basket({ isLogin, setIsLogin }) {
           <BodyDivCheck>
             {CheckBox()}
             {/* {console.log('--------', CheckBox())} */}
+            {console.log(item)}
           </BodyDivCheck>
           <BodyDivImg item={item}></BodyDivImg>
           <BodyDivContent>
-            <ContentName>{item.favBrand}</ContentName>
+            <ContentName>{item.itemName}</ContentName>
             <ContentSize>{item.size}</ContentSize>
             <ContentGrade>{item.grade}</ContentGrade>
           </BodyDivContent>
@@ -206,7 +207,7 @@ const BodyDiv = styled.div`
   border-bottom: 1px solid #bcbcbc;
   display: flex;
   height: 20vh;
-  width: 1000px;
+  width: 52vw;
   place-items: center;
   /* align-items: center; */
   /* flex-direction:column; */
@@ -233,7 +234,7 @@ const BodyDivContent = styled.div`
   /* vertical-align: center; */
   /* border: 1px solid black; */
   /* border-radius: 10%; */
-  height: 8em;
+  height: 6em;
   width: 25%;
   text-align: start;
   padding-top: 5px;
@@ -287,9 +288,8 @@ const CalculatorText = styled.div`
   width: 35vh;
   height: 8vh;
 `;
-const SumDiv = styled.div`
+const SumDiv = styled.button`
   border-radius: 6%;
-  margin-top: 2em;
   margin-left: 60vh;
   color: white;
   font-size: 1.5em;
