@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 const Profile = ({ userInfo, setUpdate }) => {
     return (
         <SignupDiv>
-            <Button onClick={() => setUpdate(true)}>
-                저장
+            <Button onClick={() => setUpdate(false)}>
+                수정
             </Button>
             <InputNameBox>
                 <InputTitle>

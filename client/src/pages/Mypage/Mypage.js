@@ -17,9 +17,9 @@ const Mypage = ({ userInfo }) => {
 
   const userHandler = () => {
     if (!update) {
-      return <Profile userInfo={userInfo} setUpdate={setUpdate} />
-    } else {
       return <SetProfile userInfo={userInfo} setUpdate={setUpdate} />
+    } else {
+      return <Profile userInfo={userInfo} setUpdate={setUpdate} />
     }
   }
 
