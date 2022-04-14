@@ -63,7 +63,12 @@ const Brand = ({
               {el.map((el) => {
                 return (
                   <ProductDiv>
-                    <ProductImage el={el} id={el}></ProductImage>
+                    <ProductImage
+                      el={el}
+                      id={userId}
+                      data-value={el.id}
+                      onClick={(e) => handlePostbuyCarts(e)}
+                    ></ProductImage>
                     <ProductMark>
                       <FontAwesomeIcon icon={faBookmark} className="mark" />
                     </ProductMark>
@@ -269,6 +274,7 @@ const Landing = ({ isLogin, userInfo, setIsLogin }) => {
 
   const handleClickFav = async (e) => {
     let { id } = e.target;
+    console.log(id);
     id = Number(id);
     const accessToken = window.localStorage.getItem('accessToken');
     await axios({
@@ -299,7 +305,7 @@ const Landing = ({ isLogin, userInfo, setIsLogin }) => {
   const handlePopularItem = async () => {
     await axios({
       url: `https://localhost:4000/items/popular`,
-      method: 'get',
+      method: 'GET',
     }).then((res) => {
       const { popular } = res.data;
       setPopularItem([popular]);
@@ -311,7 +317,7 @@ const Landing = ({ isLogin, userInfo, setIsLogin }) => {
     const accessToken = window.localStorage.getItem('accessToken');
     await axios({
       url: `https://localhost:4000/items/${id}/fav`,
-      method: 'get',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         Authorization: `jwt ${accessToken}`,
@@ -332,6 +338,7 @@ const Landing = ({ isLogin, userInfo, setIsLogin }) => {
     // id = Number(id);
     const { id } = e.target;
     const { value } = e.target.dataset;
+    console.log(id);
     const accessToken = window.localStorage.getItem('accessToken');
 
     await axios({
