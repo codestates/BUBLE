@@ -6,11 +6,12 @@ import Header from '../../components/Headers';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
-function Basket({ userinfo }) {
+function Basket() {
   const [isOne, setisOne] = useState(false);
   const isTwo = !isOne;
   const [buyCartsGet, setBuyCartsGet] = useState([]);
 
+  const userinfo = { id: 9 };
   console.log(userinfo);
 
   useEffect(() => {
@@ -19,13 +20,13 @@ function Basket({ userinfo }) {
 
   const handlebuyCarts = async ({ id }) => {
     id = Number(id);
-    const accessToken = window.localStorage.getItem('accessToken');
+    // const accessToken = window.localStorage.getItem('accessToken');
     await axios({
       url: `https://localhost:4000/likes/${id}/buy`,
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        Authorization: `jwt ${accessToken}`,
+        Authorization: `jwt eyJhbGciOiJIUzI1NiJ9.bGlAZ2FtaWwuY29t.KBC58fuyu_UfYbKQ_DXNQd6v45FXP4tSdRecfgtVkL8`,
       },
     }).then((res) => {
       const { message } = res.data;
@@ -58,9 +59,9 @@ function Basket({ userinfo }) {
         <BodyDiv>
           <BodyDivCheck>
             {CheckBox()}
-            {console.log('--------', CheckBox())}
+            {/* {console.log('--------', CheckBox())} */}
           </BodyDivCheck>
-          <BodyDivImg src={item.img}></BodyDivImg>
+          <BodyDivImg item={item}></BodyDivImg>
           <BodyDivContent>
             <ContentName>{item.favBrand}</ContentName>
             <ContentSize>{item.size}</ContentSize>
@@ -218,6 +219,9 @@ const BodyDivCheck = styled.div`
 `;
 const BodyDivImg = styled.div`
   background-image: url(${(props) => `${props.item.img}`});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 8em;
   border: 1px solid grey;
   border-radius: 6%;

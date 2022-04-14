@@ -28,9 +28,10 @@ function App() {
     <Router>
       <div className="App">
         {/* <Basket userInfo={userInfo} /> */}
-        <Login />
+        {/* <Login /> */}
+        <Landing></Landing>
 
-        {/* <Routes>
+        <Routes>
           <Route exact path="/">
             <Landing />
           </Route>
@@ -46,7 +47,7 @@ function App() {
           <Route path="/basket">
             <Basket userInfo={userInfo} />
           </Route>
-        </Routes> */}
+        </Routes>
       </div>
     </Router>
 
