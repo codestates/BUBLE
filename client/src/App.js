@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Switch as Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Login from './pages/Login/Login';
@@ -10,6 +11,21 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userinfo, setUserinfo] = useState(null);
+  const [header, setHeader] = useState(true);
+
+  const pathname = window.location.pathname;
+
+  const locationHandler = () => {
+    if (pathname === '/login' || pathname === '/signup') {
+      setHeader(false);
+    } else {
+      setHeader(true);
+    }
+  };
+
+  useEffect(() => {
+    locationHandler();
+  }, []);
 
   return (
     <div className="App">
@@ -17,21 +33,35 @@ function App() {
       {/* 안녕 */}
 
       {console.log(isLogin)}
+      {console.log(typeof pathname)}
+      {header ? <Header isLogin={isLogin} /> : null}
 
-      <Header isLogin={isLogin} />
-      <Mypage userinfo={userinfo} />
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/">
+            <Landing isLogin={isLogin} />
+          </Route>
 
-      {isLogin ? (
-        <Mypage userinfo={userinfo} />
-      ) : (
-        <Login
-          setUserinfo={setUserinfo}
-          userinfo={userinfo}
-          setIsLogin={setIsLogin}
-          isLogin={isLogin}
-        />
-      )}
+          <Route path="/userinfo">
+            <Mypage userinfo={userinfo} />
+          </Route>
+
+          <Route path="/login">
+            <Login
+              setUserinfo={setUserinfo}
+              userinfo={userinfo}
+              setIsLogin={setIsLogin}
+              isLogin={isLogin}
+            />
+          </Route>
+
+          <Route path="/signup">
+            <Signup />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
+      {header ? <Footer /> : null}
 
       {/* <Landing /> */}
 
