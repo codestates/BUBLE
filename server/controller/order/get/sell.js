@@ -1,6 +1,7 @@
 const { isAuthorized } = require('../../tokenFunctions');
 const { user } = require('../../../models');
 const { sellHistory } = require('../../../models');
+const { Item } = require('../../../models');
 
 module.exports = async (req, res) => {
   let token = isAuthorized(req);
@@ -8,11 +9,32 @@ module.exports = async (req, res) => {
   if (token) {
     const userExists = await user.findOne({ where: { email: token } });
     if (userExists) {
-      let sellList = await sellHistory.findAll();
-      let data = [];
-      for (let s of sellList) {
-        data.push(s.dataValues);
+      let sellList = await sellHistory.findAll({
+        where: { userId: userExists.id },
+      });
+
+      let item = await Item.findAll();
+      //전체 item들
+      let itemList = [];
+      for (let i of item) {
+        itemList.push(i.dataValues);
       }
+
+      let data = [];
+
+      if (Array.isArray(sellList)) {
+        for (let s of sellList) {
+          //전체 item 중 내가 산 itemId와 같은 거 찾아서 push
+          let item = itemList.filter((el) => el.id === s.itemId);
+          data.push(item[0]);
+        }
+      } else {
+        let item = itemList.filter(
+          (el) => el.id === sellList.dataValues.itemId
+        );
+        data.push(item[0]);
+      }
+
       return res.status(200).send({ data: data });
     } else {
       return res.status(400).send('user not found');

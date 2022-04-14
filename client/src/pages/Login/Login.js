@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const Login = ({ userinfo, setUserinfo, setIsLogin, isLogin }) => {
+const Login = ({ handleSignin }) => {
   const [loginInfo, setLoginInfo] = useState({
     email: '',
     password: '',
@@ -13,57 +14,11 @@ const Login = ({ userinfo, setUserinfo, setIsLogin, isLogin }) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
 
-  const handleSignin = async ({ email, password }) => {
-    console.log(email, password);
-    let answer = await axios
-      .post(
-        'https://localhost:4000/users/signin',
-        JSON.stringify({ email, password }), // data can be `string` or {object}!
-        {
-          headers: {
-            'content-type': 'application/json',
-          },
-        }
-      )
-      .then((res) => {
-        window.localStorage.setItem('accessToken', res.data.accessToken);
-        setUserinfo(res.data.data);
-        setIsLogin(true);
-      });
-  };
-
   console.log(loginInfo);
-  console.log(userinfo);
-
-  // return (
-  //   <div className="App">
-  //     <div>
-  //       <input
-  //         onChange={handleInputValue('email')}
-  //         style={{ border: '1px solid black', display: 'block' }}
-  //       ></input>
-  //       <input
-  //         onChange={handleInputValue('password')}
-  //         style={{ border: '1px solid black', display: 'block' }}
-  //       ></input>
-  //       <button onClick={() => handleSignin(loginInfo)}>로그인</button>
-  //       {userinfo ? (
-  //         <>
-  //           <div>{userinfo.id}</div>
-  //           <div>{userinfo.userName}</div>
-  //           <div>{userinfo.phoneNumber}</div>
-  //           <div>{userinfo.favBrand}</div>
-  //           <div>{userinfo.email}</div>
-  //           <div>{userinfo.password}</div>
-  //         </>
-  //       ) : null}
-  //     </div>
-  //   </div>
-  // );
 
   return (
     <LoginDiv>
-      <Logo>BUBLE</Logo>
+      <Logo to="/">BUBLE</Logo>
       <InputIdBox>
         <InputTitle>아이디</InputTitle>
         <InputId
@@ -82,6 +37,9 @@ const Login = ({ userinfo, setUserinfo, setIsLogin, isLogin }) => {
           onChange={(e) => handleInputValue('password', e)}
         ></InputPassword>
       </InputPasswordBox>
+      <Link to="/signup">
+        <Signup>회원가입</Signup>
+      </Link>
       <LoginBtn
         onClick={() => {
           handleSignin(loginInfo);
@@ -89,28 +47,29 @@ const Login = ({ userinfo, setUserinfo, setIsLogin, isLogin }) => {
       >
         로그인
       </LoginBtn>
-      <LookList>
-        <Signup>회원가입</Signup>
-      </LookList>
     </LoginDiv>
   );
 };
 
 const LoginDiv = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
+  color: black;
+  text-decoration-line: none;
   font-size: 50px;
   font-weight: 600;
   font-style: italic;
   text-align: center;
   cursor: pointer;
 `;
-
 const InputIdBox = styled.div`
   margin-top: 40px;
 `;
@@ -133,7 +92,6 @@ const InputId = styled.input`
 const InputPasswordBox = styled.div`
   margin-top: 15px;
 `;
-
 const InputPassword = styled.input`
   margin-top: 5px;
   width: 350px;
@@ -145,7 +103,7 @@ const InputPassword = styled.input`
 `;
 
 const LoginBtn = styled.button`
-  margin-top: 45px;
+  margin-top: 12px;
   border-radius: 10px;
   border: none;
   width: 350px;
@@ -157,13 +115,12 @@ const LoginBtn = styled.button`
   cursor: pointer;
 `;
 
-const LookList = styled.div`
-  display: flex;
-`;
-
-const Signup = styled.a`
-  margin-top: 12px;
+const Signup = styled.button`
+  margin-top: 45px;
   font-weight: 500;
+  border: none;
+  background-color: white;
+  cursor: pointer;
 `;
 
 export default Login;

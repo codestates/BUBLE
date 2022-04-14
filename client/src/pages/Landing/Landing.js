@@ -195,11 +195,11 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = () => {
+const Landing = ({ isLogin }) => {
   return (
     <LandingDiv>
       <LandingTop>
-        <Header />
+        <Header isLogin={isLogin} />
       </LandingTop>
       <LandingMiddle>
         <Brand />
@@ -226,4 +226,5 @@ const LandingMiddle = styled.div`
 const LandingBottom = styled.div`
   width: 100%;
 `;
+
 export default Landing;

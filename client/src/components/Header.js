@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Header = ({ isLogin }) => {
   console.log(isLogin);
@@ -29,15 +30,19 @@ const Header = ({ isLogin }) => {
         <SearchIcon>
           <i class="fa-solid fa-magnifying-glass"></i>
         </SearchIcon>
-        <Logo>BUBLE</Logo>
+        <Logo to="/">BUBLE</Logo>
         <IconGroup>
           <Notice>고객센터</Notice>
           <Wish>관심상품</Wish>
-          <Mypage>마이페이지</Mypage>
+          <Link to="/mypage">
+            <Mypage>마이페이지</Mypage>
+          </Link>
           {isLogin ? (
             <Login onClick={handleSignout}>Logout</Login>
           ) : (
-            <Login>Login</Login>
+            <Link to="/login">
+              <Login>Login</Login>
+            </Link>
           )}
         </IconGroup>
       </HeaderTop>
@@ -63,6 +68,8 @@ const HeaderTop = styled.div`
 `;
 
 const Logo = styled.a`
+  color: black;
+  text-decoration-line: none;
   display: relative;
   flex: 0 0 300px;
   font-size: 40px;

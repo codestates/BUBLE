@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "editor.formatOnSave": true,
   "prettier.semi": true,
   "prettier.javascriptEnable": ["javascript", "javascriptreact"],
@@ -6,4 +7,14 @@
   "prettier.useTabs": false,
   "prettier.tabWidth": 2,
   "singleQuote": true
+=======
+    "editor.formatOnSave": true,
+    "prettier.semi": true,
+    "prettier.javascriptEnable" : ["javascript", "javascriptreact"],
+    "prettier.printWidth" : 2,
+    "prettier.useTabs": false,
+    "prettier.tabWidth": 4,
+    "singleQuote": true
+
+>>>>>>> ef37a8748ea05a08f356c0f12a3f6601ac2df05f
 }

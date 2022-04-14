@@ -1,6 +1,7 @@
 const { isAuthorized } = require('../../tokenFunctions');
 const { user } = require('../../../models');
 const { buyHistory } = require('../../../models');
+const { Item } = require('../../../models');
 
 module.exports = async (req, res) => {
   // 경우의 수 :
@@ -17,11 +18,33 @@ module.exports = async (req, res) => {
   if (token) {
     const userExists = await user.findOne({ where: { email: token } });
     if (userExists) {
-      let buyList = await buyHistory.findAll();
-      let data = [];
-      for (let b of buyList) {
-        data.push(b.dataValues);
+      console.log(userExists.id);
+      let buyList = await buyHistory.findAll({
+        where: { userId: userExists.id },
+      });
+      //user가 산 itemId목록
+      console.log(buyList);
+
+      let item = await Item.findAll();
+      //전체 item들
+      let itemList = [];
+      for (let i of item) {
+        itemList.push(i.dataValues);
       }
+
+      let data = [];
+      //산 item이 배열 또는 요소 하나
+      if (Array.isArray(buyList)) {
+        for (let b of buyList) {
+          //전체 item 중 내가 산 itemId와 같은 거 찾아서 push
+          let item = itemList.filter((el) => el.id === b.itemId);
+          data.push(item[0]);
+        }
+      } else {
+        let item = itemList.filter((el) => el.id === buyList.dataValues.itemId);
+        data.push(item[0]);
+      }
+
       return res.status(200).send({ data: data });
     } else {
       return res.status(400).send('user not found');
