@@ -1,31 +1,35 @@
-import styled from 'styled-components';
+import styled, { CSSProp } from 'styled-components';
 import Footer from '../../components/Footer';
 import Header from '../../components/Headers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState } from 'react';
 // import fontawesome from '@fortawesome/fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 // import {ViewMore} from "../components/ViewMore"
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트
-const Brand = () => {
-  const products = function product() {
+const Brand = ({ popularItem, handleClick }) => {
+  const products = (item) => {
     return (
       <ProductDiv>
-        <ProductImage />
+        <ProductImage item={item}></ProductImage>
         <ProductMark>
           <FontAwesomeIcon icon={faBookmark} className="mark" />
         </ProductMark>
         <ProductInfo>
-          <ProductName>Nike</ProductName>
-          <ProductContent>super joden limited</ProductContent>
-          <ProductPrice>320,000원</ProductPrice>
-          <Productnow>즉시 구매가</Productnow>
+          <ProductName>{item.itemName}</ProductName>
+          <ProductContent>{item.itemName}</ProductContent>
+          <ProductPrice>{item.buyPrice}</ProductPrice>
+          <Productnow>{item.buyPrice}</Productnow>
+          <Productnow>{item.size}</Productnow>
         </ProductInfo>
       </ProductDiv>
     );
   };
+
   return (
     <BrandContainer>
       <Top>
@@ -35,14 +39,12 @@ const Brand = () => {
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        <Div>
-          {products()}
-          {products()}
-          {products()}
-          {products()}
-        </Div>
+        {popularItem.map((item) => {
+          console.log(item);
+          return <Div>{products(item)}</Div>;
+        })}
       </Top>
-      <Morebtn>
+      <Morebtn onClick={() => handleClick()}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
       </Morebtn>
@@ -55,13 +57,13 @@ const Brand = () => {
           </PopularDiv>
         </Area>
         <Div>
+          {/* {products(popularItem)}
           {products()}
           {products()}
-          {products()}
-          {products()}
+          {products()} */}
         </Div>
       </Bottom>
-      <Morebtn>
+      <Morebtn onClick={() => handleClick()}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
       </Morebtn>
@@ -122,6 +124,10 @@ const ProductInfo = styled.div`
   height: 100px;
 `;
 const ProductImage = styled.div`
+  background-image: url(${(props) => `${props.item.img}`});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 3%;
   border: 1px solid whitesmoke;
   width: 100%;
@@ -195,14 +201,41 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = ({ buyCartsGet, handlebuyCarts }) => {
+const Landing = ({ userinfo }) => {
+  const [popularItem, setPopularItem] = useState([]);
+  console.log(popularItem);
+
+  useEffect(() => {
+    handlePopularItem();
+  }, []);
+
+  const handleClick = async () => {
+    await axios({
+      url: `https://localhost:4000/items/popular`,
+      method: 'get',
+    }).then((res) => {
+      const { popular } = res.data;
+      setPopularItem([...popularItem, ...popular]);
+    });
+  };
+
+  const handlePopularItem = async () => {
+    await axios({
+      url: `https://localhost:4000/items/popular`,
+      method: 'get',
+    }).then((res) => {
+      const { popular } = res.data;
+      setPopularItem(popular);
+    });
+  };
+
   return (
     <LandingDiv>
       <LandingTop>
         <Header />
       </LandingTop>
       <LandingMiddle>
-        <Brand />
+        <Brand popularItem={popularItem} handleClick={handleClick} />
       </LandingMiddle>
       <LandingBottom>
         <Footer />

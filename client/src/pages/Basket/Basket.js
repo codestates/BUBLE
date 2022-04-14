@@ -6,30 +6,32 @@ import Header from '../../components/Headers';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
-function Basket({ buyCartsGet, handlebuyCarts }) {
+function Basket({ userinfo }) {
   const [isOne, setisOne] = useState(false);
   const isTwo = !isOne;
+  const [buyCartsGet, setBuyCartsGet] = useState([]);
+
+  console.log(userinfo);
 
   useEffect(() => {
-    handleSignout();
+    handlebuyCarts(userinfo);
   }, []);
 
-  const handleSignout = async () => {
+  const handlebuyCarts = async ({ id }) => {
+    id = Number(id);
     const accessToken = window.localStorage.getItem('accessToken');
-    console.log('signout :', accessToken);
-    if (accessToken) {
-      window.localStorage.removeItem('accessToken');
-    } //accessToken삭제
-    //cookie에서 refreshToken 삭제 필요
-    let answer = await axios({
-      url: 'https://localhost:4000/users/signout',
-      method: 'POST', // or 'PUT'
-      // data can be `string` or {object}!
+    await axios({
+      url: `https://localhost:4000/likes/${id}/buy`,
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        authorization: `jwt ${accessToken}`,
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `jwt ${accessToken}`,
       },
-    }).then((res) => console.log(res.data));
+    }).then((res) => {
+      const { message } = res.data;
+      console.log(message);
+      setBuyCartsGet(message);
+    });
   };
 
   const CheckBox = function Checks() {
@@ -51,21 +53,23 @@ function Basket({ buyCartsGet, handlebuyCarts }) {
   };
 
   const BasketBodyContent = (buyCartsGet) => {
-    return (
-      <BodyDiv>
-        <BodyDivCheck>
-          {CheckBox()}
-          {console.log('--------', CheckBox())}
-        </BodyDivCheck>
-        <BodyDivImg></BodyDivImg>
-        <BodyDivContent>
-          <ContentName>{buyCartsGet[0]}</ContentName>
-          <ContentSize>{buyCartsGet[1]}</ContentSize>
-          <ContentGrade>{buyCartsGet[2]}</ContentGrade>
-        </BodyDivContent>
-        <BodyDivPrice> won</BodyDivPrice>
-      </BodyDiv>
-    );
+    return buyCartsGet.map((item) => {
+      return (
+        <BodyDiv>
+          <BodyDivCheck>
+            {CheckBox()}
+            {console.log('--------', CheckBox())}
+          </BodyDivCheck>
+          <BodyDivImg src={item.img}></BodyDivImg>
+          <BodyDivContent>
+            <ContentName>{item.favBrand}</ContentName>
+            <ContentSize>{item.size}</ContentSize>
+            <ContentGrade>{item.grade}</ContentGrade>
+          </BodyDivContent>
+          <BodyDivPrice>{item.buyPrice}</BodyDivPrice>
+        </BodyDiv>
+      );
+    });
   };
 
   return (

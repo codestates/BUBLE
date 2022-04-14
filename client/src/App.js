@@ -18,7 +18,7 @@ function App() {
       {/* 안녕 */}
 
       {isLogin ? (
-        <Mypage userinfo={userinfo} />
+        <Basket userinfo={userinfo}></Basket>
       ) : (
         <Login
           setUserinfo={setUserinfo}
@@ -31,9 +31,9 @@ function App() {
       <Header isLogin={isLogin} />
       <Signup />
       <Footer />
-      {/* <Landing /> */}
+      <Landing userinfo={userinfo} />
 
-      {/* <Basket></Basket> */}
+      {/* <Basket userinfo={userinfo}></Basket> */}
       {/* <NotFound/> */}
       {/* <Footer/> */}
       {/* <BrowserRouter>
