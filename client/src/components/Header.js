@@ -1,8 +1,30 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom"
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ isLogin }) => {
+  console.log(isLogin);
+  const [click, setClick] = useState(false);
+
+  const handleSignout = async () => {
+    const accessToken = window.localStorage.getItem('accessToken');
+    console.log('signout :', accessToken);
+    if (accessToken) {
+      window.localStorage.removeItem('accessToken');
+    } //accessToken삭제
+    //cookie에서 refreshToken 삭제 필요
+    let answer = await axios({
+      url: 'https://localhost:4000/users/signout',
+      method: 'POST', // or 'PUT'
+      // data can be `string` or {object}!
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `jwt ${accessToken}`,
+      },
+    }).then((res) => console.log(res.data));
+  };
+
   return (
     <HeaderDiv>
       <HeaderTop>
@@ -11,10 +33,14 @@ const Header = () => {
         </SearchIcon>
         <Logo to="/">BUBLE</Logo>
         <IconGroup>
-          <Notice>고객센터</Notice>
-          <Wish>관심상품</Wish>
+
+          <Link to="/basket"><Wish>관심상품</Wish></Link>
           <Link to="/mypage"><Mypage>마이페이지</Mypage></Link>
-          <Link to="/login"><Login >Login</Login></Link>
+          {isLogin ? (
+            <Login onClick={handleSignout}>Logout</Login>
+          ) : (
+            <Link to="/login"><Login>Login</Login></Link>
+          )}
         </IconGroup>
 
       </HeaderTop>
@@ -64,15 +90,14 @@ const IconGroup = styled.div`
   padding-bottom: 35px;
 `
 
-const Notice = styled.button`
+const Wish = styled.button`
   font-size: 13px;
   cursor: pointer;
   background-color: white;
   border: none;
   text-align: top;
-  `;
-const Wish = styled(Notice)``;
-const Mypage = styled(Notice)``;
-const Login = styled(Notice)``;
+  `
+const Mypage = styled(Wish)``;
+const Login = styled(Wish)``;
 
 export default Header;

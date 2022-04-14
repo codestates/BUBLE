@@ -138,6 +138,7 @@ const Button = styled.button`
   font-weight: 300;
   border: 1px solid black;
   background-color: black;
+  cursor: pointer;
 `;
 
 const BottomTop = styled.div`
@@ -154,6 +155,7 @@ const LinkButton = styled.button`
   color: black;
   background-color: white;
   border: 1px solid white;
+  cursor: pointer;
 `;
 
 const IconGroup = styled.div`
@@ -163,10 +165,11 @@ const IconGroup = styled.div`
 `;
 
 const IconButton = styled.button`
-  font-size: 25px;
-  background-color: transparent;
-  border: 0;
-  margin-left: 10px;
+font-size: 25px;
+background-color: transparent;
+border: 0;
+margin-left: 10px;
+cursor: pointer;
 `;
 
 const BottomMiddle = styled.div``;
