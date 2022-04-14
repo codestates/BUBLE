@@ -28,22 +28,27 @@ const Signup = ({ handleSignup }) => {
           type="text"
           name="inputName"
           placeholder="이름을 입력하세요."
+          onChange={(e) => handleInputValue('userName', e)}
         ></InputName>
       </InputNameBox>
-      <InputIdBox>
-        <InputTitle>아이디*</InputTitle>
-        <InputId
+
+      <InputEmailBox>
+        <InputTitle>이메일*</InputTitle>
+        <InputEmail
           type="text"
-          name="inputId"
-          placeholder="아이디를 입력하세요."
-        ></InputId>
-      </InputIdBox>
+          name="inputEmail"
+          placeholder="이메일을 입력하세요."
+          onChange={(e) => handleInputValue('email', e)}
+        ></InputEmail>
+      </InputEmailBox>
+
       <InputPasswordBox>
         <InputTitle>비밀번호*</InputTitle>
         <InputPassword
           type="password"
           name="inputPassword"
           placeholder="비밀번호를 입력하세요."
+          onChange={(e) => handleInputValue('password', e)}
         ></InputPassword>
       </InputPasswordBox>
       <InputPhoneNumBox>
@@ -51,26 +56,21 @@ const Signup = ({ handleSignup }) => {
         <InputPhoneNum
           type="text"
           name="inputPhoneNum"
-          placeholder="전화번로를 입력하세요."
+          placeholder="전화번호를 입력하세요."
+          onChange={(e) => handleInputValue('phoneNumber', e)}
         ></InputPhoneNum>
       </InputPhoneNumBox>
-      <InputEmailBox>
-        <InputTitle>이메일*</InputTitle>
-        <InputEmail
-          type="text"
-          name="inputEmail"
-          placeholder="이메일을 입력하세요."
-        ></InputEmail>
-      </InputEmailBox>
+
       <InputFavBox>
         <InputTitle>선호 브랜드</InputTitle>
         <InputFav
           type="text"
           name="inputPhoneNum"
           placeholder="선호브랜드를 입력하세요. 예) 나이키, 아디다스"
+          onChange={(e) => handleInputValue('favBrand', e)}
         ></InputFav>
       </InputFavBox>
-      <SignupBtn>회원가입</SignupBtn>
+      <SignupBtn onClick={() => handleSignup(signupInfo)}>회원가입</SignupBtn>
     </SignupDiv>
   );
 };

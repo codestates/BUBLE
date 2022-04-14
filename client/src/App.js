@@ -68,6 +68,7 @@ export default function App() {
       )
       .then((res) => {
         console.log(res.data);
+        console.log(signup);
         setSignup(true);
       });
   };
@@ -84,7 +85,11 @@ export default function App() {
 
         <Routes>
           <Route exact path="/">
-            <Landing userInfo={userinfo} isLogin={isLogin} />
+            <Landing
+              userInfo={userinfo}
+              setIsLogin={setIsLogin}
+              isLogin={isLogin}
+            />
           </Route>
           {/* <Route path="/login">
             <Login />
@@ -112,10 +117,26 @@ export default function App() {
           </Route>
 
           <Route path="/mypage">
-            <Mypage isLogin={isLogin} userInfo={userinfo} />
+            {isLogin ? (
+              <Mypage
+                setIsLogin={setIsLogin}
+                userInfo={userinfo}
+                isLogin={isLogin}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )}
           </Route>
           <Route path="/basket">
-            <Basket isLogin={isLogin} userInfo={userinfo} />
+            {isLogin ? (
+              <Basket
+                setIsLogin={setIsLogin}
+                userInfo={userinfo}
+                isLogin={isLogin}
+              />
+            ) : (
+              <Redirect to="/login" />
+            )}
 
             <Route path="*" component={NotFound} />
           </Route>

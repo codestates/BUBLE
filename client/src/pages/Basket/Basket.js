@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품
-function Basket({ isLogin }) {
+function Basket({ isLogin, setIsLogin }) {
   const [isOne, setisOne] = useState(false);
   const isTwo = !isOne;
   const [buyCartsGet, setBuyCartsGet] = useState([]);
@@ -76,7 +76,7 @@ function Basket({ isLogin }) {
   return (
     <Div>
       <BasketTop>
-        <Header isLogin={isLogin} />
+        <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       </BasketTop>
       <BasketMiddle>
         <BasketTitle>

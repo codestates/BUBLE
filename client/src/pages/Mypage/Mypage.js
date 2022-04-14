@@ -7,7 +7,7 @@ import Signup from '../Signup/Signup';
 import Profile from '../../components/Profile';
 import SetProfile from '../../components/SetProfile';
 
-const Mypage = ({ userInfo, isLogin }) => {
+const Mypage = ({ userInfo, setIsLogin, isLogin }) => {
   const [update, setUpdate] = useState(true);
   console.log(update);
   console.log(userInfo);
@@ -114,7 +114,7 @@ const Mypage = ({ userInfo, isLogin }) => {
 
   return (
     <div>
-      <Header isLogin={isLogin} />
+      <Header setIsLogin={setIsLogin} isLogin={isLogin} />
       <MypageDiv>
         <SideBar>
           <BuyList onClick={() => setPage('구매 내역')}>구매 내역</BuyList>

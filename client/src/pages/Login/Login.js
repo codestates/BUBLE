@@ -25,6 +25,7 @@ const Login = ({ handleSignin }) => {
           type="text"
           name="inputId"
           placeholder="아이디를 입력하세요."
+          onChange={(e) => handleInputValue('email', e)}
         ></InputId>
       </InputIdBox>
       <InputPasswordBox>
@@ -33,6 +34,7 @@ const Login = ({ handleSignin }) => {
           type="password"
           name="inputPassword"
           placeholder="비밀번호를 입력하세요"
+          onChange={(e) => handleInputValue('password', e)}
         ></InputPassword>
       </InputPasswordBox>
       <Link to="/signup">

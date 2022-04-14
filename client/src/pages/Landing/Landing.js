@@ -248,7 +248,7 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = ({ userInfo, isLogin }) => {
+const Landing = ({ isLogin, userInfo, setIsLogin }) => {
   const [popularItem, setPopularItem] = useState([]);
   const [favItem, setFavItem] = useState([]);
   useEffect(() => {
@@ -351,7 +351,7 @@ const Landing = ({ userInfo, isLogin }) => {
   return (
     <LandingDiv>
       <LandingTop>
-        <Header isLogin={isLogin} />
+        <Header setIsLogin={setIsLogin} isLogin={isLogin} />
       </LandingTop>
       <LandingMiddle>
         <Brand

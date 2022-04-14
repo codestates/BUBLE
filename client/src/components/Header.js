@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Header = ({ isLogin }) => {
+const Header = ({ isLogin, setIsLogin }) => {
   console.log(isLogin);
   const [click, setClick] = useState(false);
 
@@ -22,7 +22,7 @@ const Header = ({ isLogin }) => {
         'Content-Type': 'application/json',
         authorization: `jwt ${accessToken}`,
       },
-    }).then((res) => console.log(res.data));
+    }).then((res) => setIsLogin(false));
   };
 
   return (
