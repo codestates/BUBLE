@@ -17,11 +17,12 @@ function App() {
   // const [isLogin, setIsLogin] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
   const userInfo = {
-    userName: 'ghoo',
+    id: 9,
+    userName: 'li',
     password: '1234',
-    email: 'dbhjsdbj',
-    phoneNumber: '123-213',
-    favBrand: '나이키',
+    email: 'li@gamil.com',
+    phoneNumber: '01012345678',
+    favBrand: '닥터마틴',
   };
 
   return (
@@ -29,11 +30,11 @@ function App() {
       <div className="App">
         {/* <Basket userInfo={userInfo} /> */}
         {/* <Login /> */}
-        <Landing></Landing>
+        {/* <Landing></Landing> */}
 
         <Routes>
           <Route exact path="/">
-            <Landing />
+            <Landing userInfo={userInfo} />
           </Route>
           <Route path="/login">
             <Login />

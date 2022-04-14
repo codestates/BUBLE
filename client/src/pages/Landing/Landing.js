@@ -11,19 +11,56 @@ import axios from 'axios';
 //<FontAwesomeIcon icon="fa-solid fa-bookmark" />
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트
-const Brand = ({ popularItem, handleClick }) => {
+const Brand = ({
+  popularItem,
+  favItem,
+  handleClickPopular,
+  handleClickFav,
+  userInfo,
+}) => {
+  const { id: userId } = userInfo;
   const popularItems = (popularItem) => {
-    console.log(popularItem);
-
     return (
       <>
         {popularItem.map((el) => {
           return (
             <Div>
               {el.map((el) => {
+                // console.log(el);
                 return (
                   <ProductDiv>
-                    <ProductImage el={el}></ProductImage>
+                    <ProductImage el={el} id={el}></ProductImage>
+                    <ProductMark>
+                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    </ProductMark>
+                    <ProductInfo>
+                      <ProductName>{el.brand}</ProductName>
+                      <ProductContent>{el.itemName}</ProductContent>
+                      <ProductPrice>{el.buyPrice}</ProductPrice>
+                      <Productnow>즉시구매가</Productnow>
+                    </ProductInfo>
+                  </ProductDiv>
+                );
+              })}
+            </Div>
+          );
+        })}
+      </>
+    );
+  };
+
+  const favItems = (favItem) => {
+    return (
+      <>
+        {favItem.map((el) => {
+          return (
+            <Div>
+              {el.map((el) => {
+                return !el ? (
+                  <div>없다</div>
+                ) : (
+                  <ProductDiv>
+                    <ProductImage el={el} id={el}></ProductImage>
                     <ProductMark>
                       <FontAwesomeIcon icon={faBookmark} className="mark" />
                     </ProductMark>
@@ -52,12 +89,9 @@ const Brand = ({ popularItem, handleClick }) => {
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-
-        {/* {products()}
-        {products()}
-        {products()} */}
+        {favItems(favItem)}
       </Top>
-      <Morebtn onClick={() => handleClick()}>
+      <Morebtn id={userId} onClick={(e) => handleClickFav(e)}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
       </Morebtn>
@@ -71,7 +105,7 @@ const Brand = ({ popularItem, handleClick }) => {
         </Area>
         {popularItems(popularItem)}
       </Bottom>
-      <Morebtn onClick={() => handleClick()}>
+      <Morebtn onClick={() => handleClickPopular()}>
         더보기
         <FontAwesomeIcon icon={faCaretDown} className="more" />
       </Morebtn>
@@ -209,21 +243,49 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = ({ userinfo }) => {
+const Landing = ({ userInfo }) => {
   const [popularItem, setPopularItem] = useState([]);
-  // console.log(popularItem);
-
+  const [favItem, setFavItem] = useState([]);
   useEffect(() => {
     handlePopularItem();
+    handleFavItem(userInfo);
   }, []);
 
-  const handleClick = async () => {
+  const handleClickPopular = async () => {
     await axios({
       url: `https://localhost:4000/items/popular`,
       method: 'get',
     }).then((res) => {
       const { popular } = res.data;
+      console.log(popular);
       setPopularItem([...popularItem, [...popular]]);
+    });
+  };
+
+  const handleClickFav = async (e) => {
+    const { id } = e.target;
+    await axios({
+      url: `https://localhost:4000/items/${id}/fav`,
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.bGlAZ2FtaWwuY29t.KBC58fuyu_UfYbKQ_DXNQd6v45FXP4tSdRecfgtVkL8',
+      },
+    }).then((res) => {
+      const { message } = res.data;
+      const { length } = message;
+      let randomItem = [];
+
+      for (let i = 0; i < 4; i++) {
+        let index = Math.floor(Math.random() * (length + 1));
+        index = [index];
+        index.forEach((el) => randomItem.push(message[el]));
+      }
+      // console.log(message.splice(0, 4));
+      console.log(randomItem);
+
+      setFavItem([...favItem, [...randomItem]]);
     });
   };
 
@@ -237,13 +299,39 @@ const Landing = ({ userinfo }) => {
     });
   };
 
+  const handleFavItem = async ({ id }) => {
+    await axios({
+      url: `https://localhost:4000/items/${id}/fav`,
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.bGlAZ2FtaWwuY29t.KBC58fuyu_UfYbKQ_DXNQd6v45FXP4tSdRecfgtVkL8',
+      },
+    }).then((res) => {
+      const { message } = res.data;
+      let arr = [];
+      for (let i = 0; i < 4; i++) {
+        arr.push(message[i]);
+      }
+
+      setFavItem([arr]);
+    });
+  };
+
   return (
     <LandingDiv>
       <LandingTop>
         <Header />
       </LandingTop>
       <LandingMiddle>
-        <Brand popularItem={popularItem} handleClick={handleClick} />
+        <Brand
+          popularItem={popularItem}
+          favItem={favItem}
+          handleClickPopular={handleClickPopular}
+          handleClickFav={handleClickFav}
+          userInfo={userInfo}
+        />
       </LandingMiddle>
       <LandingBottom>
         <Footer />
