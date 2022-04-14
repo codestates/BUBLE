@@ -29,7 +29,7 @@ function App() {
       <div className="App">
         {/* <Basket userInfo={userInfo} /> */}
         {/* <Login /> */}
-        <Landing></Landing>
+
 
         <Routes>
           <Route exact path="/">

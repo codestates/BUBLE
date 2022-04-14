@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Footer from '../../components/Footer';
-import Header from '../../components/Headers';
+import Header from '../../components/Header';
 
 // 스테이트로 카운터해서 값이 추가될때마다 카운트가 올라가고 삭제하면 하나 삭제할때마다
 // 관심상품

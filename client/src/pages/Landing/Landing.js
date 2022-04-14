@@ -1,6 +1,6 @@
 import styled, { CSSProp } from 'styled-components';
 import Footer from '../../components/Footer';
-import Header from '../../components/Headers';
+import Header from '../../components/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 // import fontawesome from '@fortawesome/fontawesome'
