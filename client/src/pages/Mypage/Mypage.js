@@ -210,8 +210,6 @@ const BodyDivImg = styled.div`
   border: 1px solid grey;
   border-radius: 6%;
   width: 8vw;
-  width: 8vw;
-  width: 8vw;
   margin-left: 1.5vw;
 `;
 const BodyDivContent = styled.div`
@@ -220,8 +218,6 @@ const BodyDivContent = styled.div`
   /* border: 1px solid black; */
   /* border-radius: 10%; */
   height: 8em;
-  width: 25%;
-  width: 25%;
   width: 25%;
   text-align: start;
   padding-top: 5px;
@@ -256,8 +252,6 @@ const BodyDivPrice = styled.p`
   border-bottom: 1px solid #bcbcbc;
   /* border: 1px solid black; */
   height: 1em;
-  width: 15%;
-  width: 15%;
   width: 15%;
   vertical-align: center;
   text-align: right;

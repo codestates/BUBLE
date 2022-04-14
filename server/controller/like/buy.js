@@ -46,7 +46,6 @@ module.exports = {
           const itemId = buyCartInfo.map((el) => el.itemId);
           const itemInfo = await Item.findAll({
             where: { id: { [Op.in]: itemId } },
-            attributes: ['id', 'grade', 'size', 'itemName'],
           });
 
           res.status(200).json({ message: itemInfo });

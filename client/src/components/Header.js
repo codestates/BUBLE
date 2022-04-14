@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Header = ({ isLogin }) => {
   console.log(isLogin);
+  const [click, setClick] = useState(false);
 
   const handleSignout = async () => {
     const accessToken = window.localStorage.getItem('accessToken');
@@ -32,8 +33,9 @@ const Header = ({ isLogin }) => {
         </SearchIcon>
         <Logo to="/">BUBLE</Logo>
         <IconGroup>
-          <Notice>고객센터</Notice>
-          <Wish>관심상품</Wish>
+          <Link to="/basket">
+            <Wish>관심상품</Wish>
+          </Link>
           <Link to="/mypage">
             <Mypage>마이페이지</Mypage>
           </Link>
@@ -67,7 +69,7 @@ const HeaderTop = styled.div`
   height: 60px;
 `;
 
-const Logo = styled.a`
+const Logo = styled(Link)`
   color: black;
   text-decoration-line: none;
   display: relative;
@@ -91,15 +93,14 @@ const IconGroup = styled.div`
   padding-bottom: 35px;
 `;
 
-const Notice = styled.button`
+const Wish = styled.button`
   font-size: 13px;
   cursor: pointer;
   background-color: white;
   border: none;
   text-align: top;
 `;
-const Wish = styled(Notice)``;
-const Mypage = styled(Notice)``;
-const Login = styled(Notice)``;
+const Mypage = styled(Wish)``;
+const Login = styled(Wish)``;
 
 export default Header;

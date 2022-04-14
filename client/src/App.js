@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Switch as Routes,
   Route,
   Redirect,
@@ -15,7 +15,7 @@ import Landing from './pages/Landing/Landing';
 import Basket from './pages/Basket/Basket';
 import NotFound from './components/Notfound';
 
-function App() {
+export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userinfo, setUserinfo] = useState(null);
   const [signup, setSignup] = useState(false);
@@ -70,22 +70,17 @@ function App() {
   console.log(signup);
 
   return (
-    <div className="App">
-      {/* {isLoading && <Loding/>} */}
-      {/* 안녕 */}
+    <Router>
+      <div className="App">
+        {/* <Basket userInfo={userInfo} /> */}
+        {/* <Login /> */}
 
-      <BrowserRouter>
         <Routes>
           <Route exact path="/">
-            <Landing isLogin={isLogin} />
+            <Landing userInfo={userinfo} />
           </Route>
-
-          <Route path="/mypage">
-            <Mypage userInfo={userinfo} />
-          </Route>
-
           {/* <Route path="/login">
-            <Login handleSignin={handleSignin} />
+            <Login />
           </Route> */}
 
           <Route path="/login">
@@ -97,6 +92,10 @@ function App() {
             )}
           </Route>
 
+          {/* <Route path="/signup">
+            <Signup />
+          </Route> */}
+
           <Route path="/signup">
             {signup ? (
               <Redirect to="/login" />
@@ -105,12 +104,16 @@ function App() {
             )}
           </Route>
 
-          <Route path="/Basket" component={Basket} />
+          <Route path="/mypage">
+            <Mypage userInfo={userinfo} />
+          </Route>
+          <Route path="/basket">
+            <Basket userInfo={userinfo} />
 
-          <Route path="*" component={NotFound} />
+            <Route path="*" component={NotFound} />
+          </Route>
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </Router>
   );
 }
-export default App;
