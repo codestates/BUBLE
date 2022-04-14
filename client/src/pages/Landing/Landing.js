@@ -12,8 +12,7 @@ import axios from 'axios';
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트
 const Brand = ({ popularItem, handleClick }) => {
-  const [list, setList] = useState();
-  const products = (popularItem) => {
+  const popularItems = (popularItem) => {
     console.log(popularItem);
 
     return (
@@ -53,7 +52,6 @@ const Brand = ({ popularItem, handleClick }) => {
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        {products(popularItem)}
 
         {/* {products()}
         {products()}
@@ -71,12 +69,7 @@ const Brand = ({ popularItem, handleClick }) => {
             <PopularDivBottom>인기 등록 상품</PopularDivBottom>
           </PopularDiv>
         </Area>
-        <Div>
-          {/* {products(popularItem)} */}
-          {/* {products()}
-          {products()}
-          {products()} */}
-        </Div>
+        {popularItems(popularItem)}
       </Bottom>
       <Morebtn onClick={() => handleClick()}>
         더보기
