@@ -17,19 +17,24 @@ const Brand = ({
   handleClickPopular,
   handleClickFav,
   userInfo,
+  handlePostbuyCarts,
 }) => {
   const { id: userId } = userInfo;
-  const popularItems = (popularItem) => {
+  const popularItems = ({ popularItem, handlePostbuyCarts }) => {
     return (
       <>
         {popularItem.map((el) => {
           return (
             <Div>
               {el.map((el) => {
-                // console.log(el);
                 return (
                   <ProductDiv>
-                    <ProductImage el={el} id={el}></ProductImage>
+                    <ProductImage
+                      el={el}
+                      id={userId}
+                      data-value={el.id}
+                      onClick={(e) => handlePostbuyCarts(e)}
+                    ></ProductImage>
                     <ProductMark>
                       <FontAwesomeIcon icon={faBookmark} className="mark" />
                     </ProductMark>
@@ -49,16 +54,14 @@ const Brand = ({
     );
   };
 
-  const favItems = (favItem) => {
+  const favItems = ({ favItem }) => {
     return (
       <>
         {favItem.map((el) => {
           return (
             <Div>
               {el.map((el) => {
-                return !el ? (
-                  <div>없다</div>
-                ) : (
+                return (
                   <ProductDiv>
                     <ProductImage el={el} id={el}></ProductImage>
                     <ProductMark>
@@ -89,7 +92,7 @@ const Brand = ({
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        {favItems(favItem)}
+        {favItems({ favItem, handlePostbuyCarts })}
       </Top>
       <Morebtn id={userId} onClick={(e) => handleClickFav(e)}>
         더보기
@@ -103,7 +106,7 @@ const Brand = ({
             <PopularDivBottom>인기 등록 상품</PopularDivBottom>
           </PopularDiv>
         </Area>
-        {popularItems(popularItem)}
+        {popularItems({ popularItem, handlePostbuyCarts })}
       </Bottom>
       <Morebtn onClick={() => handleClickPopular()}>
         더보기
@@ -263,26 +266,28 @@ const Landing = ({ userInfo }) => {
   };
 
   const handleClickFav = async (e) => {
-    const { id } = e.target;
+    let { id } = e.target;
+    id = Number(id);
+    const accessToken = window.localStorage.getItem('accessToken');
     await axios({
       url: `https://localhost:4000/items/${id}/fav`,
       method: 'get',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.bGlAZ2FtaWwuY29t.KBC58fuyu_UfYbKQ_DXNQd6v45FXP4tSdRecfgtVkL8',
+        Authorization: `jwt ${accessToken}`,
       },
     }).then((res) => {
       const { message } = res.data;
+      // console.log(message);
       const { length } = message;
       let randomItem = [];
 
       for (let i = 0; i < 4; i++) {
-        let index = Math.floor(Math.random() * (length + 1));
-        index = [index];
-        index.forEach((el) => randomItem.push(message[el]));
+        let index = Math.floor(Math.random() * length);
+        randomItem.push(message[index]);
+        // index = [index];
+        // index.forEach((el) => randomItem.push(message[el]));
       }
-      // console.log(message.splice(0, 4));
       console.log(randomItem);
 
       setFavItem([...favItem, [...randomItem]]);
@@ -300,13 +305,14 @@ const Landing = ({ userInfo }) => {
   };
 
   const handleFavItem = async ({ id }) => {
+    id = Number(id);
+    const accessToken = window.localStorage.getItem('accessToken');
     await axios({
       url: `https://localhost:4000/items/${id}/fav`,
       method: 'get',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.bGlAZ2FtaWwuY29t.KBC58fuyu_UfYbKQ_DXNQd6v45FXP4tSdRecfgtVkL8',
+        Authorization: `jwt ${accessToken}`,
       },
     }).then((res) => {
       const { message } = res.data;
@@ -316,6 +322,27 @@ const Landing = ({ userInfo }) => {
       }
 
       setFavItem([arr]);
+    });
+  };
+
+  // TODO: postBuyCarts
+  const handlePostbuyCarts = async (e) => {
+    // id = Number(id);
+    const { id } = e.target;
+    const { value } = e.target.dataset;
+    const accessToken = window.localStorage.getItem('accessToken');
+
+    await axios({
+      url: `https://localhost:4000/likes/${id}/buy`,
+      method: 'POST',
+      data: { userid: id, itemid: value },
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `jwt ${accessToken}`,
+      },
+    }).then((res) => {
+      const { message } = res.data;
+      console.log(message);
     });
   };
 
@@ -331,6 +358,7 @@ const Landing = ({ userInfo }) => {
           handleClickPopular={handleClickPopular}
           handleClickFav={handleClickFav}
           userInfo={userInfo}
+          handlePostbuyCarts={handlePostbuyCarts}
         />
       </LandingMiddle>
       <LandingBottom>

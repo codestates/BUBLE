@@ -20,13 +20,13 @@ function Basket() {
 
   const handlebuyCarts = async ({ id }) => {
     id = Number(id);
-    // const accessToken = window.localStorage.getItem('accessToken');
+    const accessToken = window.localStorage.getItem('accessToken');
     await axios({
       url: `https://localhost:4000/likes/${id}/buy`,
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
-        Authorization: `jwt eyJhbGciOiJIUzI1NiJ9.bGlAZ2FtaWwuY29t.KBC58fuyu_UfYbKQ_DXNQd6v45FXP4tSdRecfgtVkL8`,
+        Authorization: `jwt ${accessToken}`,
       },
     }).then((res) => {
       const { message } = res.data;
