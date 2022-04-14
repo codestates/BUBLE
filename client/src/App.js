@@ -17,7 +17,14 @@ import NotFound from './components/Notfound';
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
-  const [userinfo, setUserinfo] = useState(null);
+  const [userinfo, setUserinfo] = useState({
+    id: '1',
+    userName: '',
+    email: '',
+    password: '',
+    favBrand: '나이키',
+    phoneNumber: '',
+  });
   const [signup, setSignup] = useState(false);
 
   const handleSignin = async ({ email, password }) => {
@@ -77,7 +84,7 @@ export default function App() {
 
         <Routes>
           <Route exact path="/">
-            <Landing userInfo={userinfo} />
+            <Landing userInfo={userinfo} isLogin={isLogin} />
           </Route>
           {/* <Route path="/login">
             <Login />
@@ -105,10 +112,10 @@ export default function App() {
           </Route>
 
           <Route path="/mypage">
-            <Mypage userInfo={userinfo} />
+            <Mypage isLogin={isLogin} userInfo={userinfo} />
           </Route>
           <Route path="/basket">
-            <Basket userInfo={userinfo} />
+            <Basket isLogin={isLogin} userInfo={userinfo} />
 
             <Route path="*" component={NotFound} />
           </Route>

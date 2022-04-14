@@ -154,6 +154,7 @@ const Area = styled.div`
 const Div = styled.div`
   justify-content: center;
   display: flex;
+  margin-bottom: 20px;
   width: 100%;
   height: 380px;
 `;
@@ -211,6 +212,7 @@ const Productnow = styled.div`
 `;
 //더보기
 const Morebtn = styled.div`
+  margin-top: 20px;
   line-height: 50px;
   border-radius: 12px;
   padding: 0 30;
@@ -246,7 +248,7 @@ const PopularDivBottom = styled.div`
 `;
 
 // 랜딩 페이지
-const Landing = ({ userInfo }) => {
+const Landing = ({ userInfo, isLogin }) => {
   const [popularItem, setPopularItem] = useState([]);
   const [favItem, setFavItem] = useState([]);
   useEffect(() => {
@@ -349,7 +351,7 @@ const Landing = ({ userInfo }) => {
   return (
     <LandingDiv>
       <LandingTop>
-        <Header />
+        <Header isLogin={isLogin} />
       </LandingTop>
       <LandingMiddle>
         <Brand
