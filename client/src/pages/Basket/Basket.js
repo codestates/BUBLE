@@ -12,7 +12,7 @@ function Basket() {
   const [buyCartsGet, setBuyCartsGet] = useState([]);
 
   const userinfo = { id: 9 };
-  console.log(userinfo);
+  // console.log(userinfo);
 
   useEffect(() => {
     handlebuyCarts(userinfo);
@@ -30,7 +30,7 @@ function Basket() {
       },
     }).then((res) => {
       const { message } = res.data;
-      console.log(message);
+      // console.log(message);
       setBuyCartsGet(message);
     });
   };
@@ -67,7 +67,7 @@ function Basket() {
             <ContentSize>{item.size}</ContentSize>
             <ContentGrade>{item.grade}</ContentGrade>
           </BodyDivContent>
-          <BodyDivPrice>{item.buyPrice}</BodyDivPrice>
+          <BodyDivPrice>{item.buyPrice} 원</BodyDivPrice>
         </BodyDiv>
       );
     });

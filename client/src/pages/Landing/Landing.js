@@ -12,20 +12,35 @@ import axios from 'axios';
 
 // fav-brand 와 popular-brand를 넣어줄 컴포넌트
 const Brand = ({ popularItem, handleClick }) => {
-  const products = (item) => {
+  const [list, setList] = useState();
+  const products = (popularItem) => {
+    console.log(popularItem);
+
     return (
-      <ProductDiv>
-        <ProductImage item={item}></ProductImage>
-        <ProductMark>
-          <FontAwesomeIcon icon={faBookmark} className="mark" />
-        </ProductMark>
-        <ProductInfo>
-          <ProductName>{item.itemName}</ProductName>
-          <ProductContent>{item.itemName}</ProductContent>
-          <ProductPrice>{item.buyPrice}</ProductPrice>
-          <Productnow>{item.buyPrice}</Productnow>
-        </ProductInfo>
-      </ProductDiv>
+      <>
+        {popularItem.map((el) => {
+          return (
+            <Div>
+              {el.map((el) => {
+                return (
+                  <ProductDiv>
+                    <ProductImage el={el}></ProductImage>
+                    <ProductMark>
+                      <FontAwesomeIcon icon={faBookmark} className="mark" />
+                    </ProductMark>
+                    <ProductInfo>
+                      <ProductName>{el.brand}</ProductName>
+                      <ProductContent>{el.itemName}</ProductContent>
+                      <ProductPrice>{el.buyPrice}</ProductPrice>
+                      <Productnow>즉시구매가</Productnow>
+                    </ProductInfo>
+                  </ProductDiv>
+                );
+              })}
+            </Div>
+          );
+        })}
+      </>
     );
   };
 
@@ -38,10 +53,11 @@ const Brand = ({ popularItem, handleClick }) => {
             <FavDivBottom>선호 등록 상품</FavDivBottom>
           </FavDiv>
         </Area>
-        {popularItem.map((item) => {
-          // console.log(item);
-          return <Div>{products(item)}</Div>;
-        })}
+        {products(popularItem)}
+
+        {/* {products()}
+        {products()}
+        {products()} */}
       </Top>
       <Morebtn onClick={() => handleClick()}>
         더보기
@@ -56,8 +72,8 @@ const Brand = ({ popularItem, handleClick }) => {
           </PopularDiv>
         </Area>
         <Div>
-          {/* {products(popularItem)}
-          {products()}
+          {/* {products(popularItem)} */}
+          {/* {products()}
           {products()}
           {products()} */}
         </Div>
@@ -123,7 +139,7 @@ const ProductInfo = styled.div`
   height: 100px;
 `;
 const ProductImage = styled.div`
-  background-image: url(${(props) => `${props.item.img}`});
+  background-image: url(${(props) => `${props.el.img}`});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -214,7 +230,7 @@ const Landing = ({ userinfo }) => {
       method: 'get',
     }).then((res) => {
       const { popular } = res.data;
-      setPopularItem([...popularItem, ...popular]);
+      setPopularItem([...popularItem, [...popular]]);
     });
   };
 
@@ -224,7 +240,7 @@ const Landing = ({ userinfo }) => {
       method: 'get',
     }).then((res) => {
       const { popular } = res.data;
-      setPopularItem(popular);
+      setPopularItem([popular]);
     });
   };
 
