@@ -217,6 +217,7 @@ const BodyDivCheck = styled.div`
   width: 1.2vw;
 `;
 const BodyDivImg = styled.div`
+  background-image: url(${(props) => `${props.item.img}`});
   height: 8em;
   border: 1px solid grey;
   border-radius: 6%;
