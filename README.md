@@ -25,10 +25,10 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 
 |역할|이름|포지션|Github|
 |------|---|---|---|
-|팀장|곽나경|BACK-END|[👾Github](https://github.com/nicky0830)|
-|팀원|박지후|FRONT-END|[👾Github](https://github.com/ghooman)|
-|팀원|이희영|BACK-END|[👾Github](https://github.com/almond-flavoured)|
-|팀원|최민혁|FRONT-END|[👾Github](https://github.com/minheock)
+|팀장|곽나경|BACK-END|[nicky0830](https://github.com/nicky0830)|
+|팀원|박지후|FRONT-END|[ghooman](https://github.com/ghooman)|
+|팀원|이희영|BACK-END|[almond-flavoured](https://github.com/almond-flavoured)|
+|팀원|최민혁|FRONT-END|[minheock](https://github.com/minheock)
 
 <br>
 <br>
