@@ -75,7 +75,7 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 
 ## More Info
 
-📝 [Notion](https://garrulous-gander-3f2.notion.site/9-First-Project-6e129ca4f9e0468a9a429fc2048333e7) <br>
+📝 [Notion](https://garrulous-gander-3f2.notion.site/9-First-Project-6e129ca4f9e0468a9a429fc2048333e7) 
 <br>
 📌 [WIKI](https://github.com/codestates/BUBLE/wiki)
 
