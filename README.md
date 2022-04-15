@@ -15,13 +15,13 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 <br>
 <br>
 
-# 🛠 사용 스택
+## 🛠 사용 스택
 <img width="945" alt="스크린샷 2022-04-15 10 40 52" src="https://user-images.githubusercontent.com/81677222/163504370-086bd374-10e2-45b2-ae40-1892a52e29bc.png">   
 
 <br>
 <br>
 
-# 🌟 Team members
+## 🌟 Team members
 
 |역할|이름|포지션|Github|
 |------|---|---|---|
@@ -33,7 +33,7 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 <br>
 <br>
 
-# More Info
+## More Info
 
 📝 [Notion](https://garrulous-gander-3f2.notion.site/9-First-Project-6e129ca4f9e0468a9a429fc2048333e7) <br>
 <br>
