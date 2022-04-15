@@ -21,6 +21,44 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 <br>
 <br>
 
+## Final App View
+<details>
+<summary>회원가입</summary>
+  
+ㄴㅇㄹㅇㄴㄹ
+</details>
+<details>
+<summary>로그인/로그아웃</summary>
+  
+ㄴㅇㄹㅇㄴㄹ
+</details>
+<details>
+<summary>랜딩페이지</summary>
+  
+ㄴㅇㄹㅇㄴㄹ
+</details>
+<details>
+<summary>마이페이지-회원정보수정</summary>
+  
+ㄴㅇㄹㅇㄴㄹ
+</details>
+<details>
+<summary>마이페이지-구매내역</summary>
+  
+ㄴㅇㄹㅇㄴㄹ
+</details>
+<details>
+<summary>마이페이지-구매내역</summary>
+  
+ㄴㅇㄹㅇㄴㄹ
+</details>
+<details>
+<summary>관심상품페이지</summary>
+  
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/81677222/163509194-839e1f47-1b21-45e7-a712-1ed4e588e140.gif)
+</details>
+
+
 ## 🌟 Team members
 
 |역할|이름|포지션|Github|
