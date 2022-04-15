@@ -21,7 +21,7 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 <br>
 <br>
 
-## Final App View
+## 🌟 First App View
 <details>
 <summary>회원가입</summary>
   
@@ -59,7 +59,7 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 </details>
 
 
-## 🌟 Team members
+## 👨‍👩‍👧‍👦 Team members
 
 |역할|이름|포지션|Github|
 |------|---|---|---|
