@@ -25,12 +25,12 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 <details>
 <summary>회원가입</summary>
   
-ㄴㅇㄹㅇㄴㄹ
+![회원가입](https://user-images.githubusercontent.com/85857465/163519045-1f454aba-4afa-4eda-9832-47d3504e7a89.gif)
 </details>
 <details>
 <summary>로그인/로그아웃</summary>
   
-ㄴㅇㄹㅇㄴㄹ
+![로그인 : 로그아웃](https://user-images.githubusercontent.com/85857465/163519011-efb4dd56-da3f-4261-a9c3-db6e769666df.gif)
 </details>
 <details>
 <summary>랜딩페이지</summary>
