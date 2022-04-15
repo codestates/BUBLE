@@ -34,7 +34,9 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 </details>
 <details>
 <summary>랜딩페이지</summary>
+  
   ![랜딩페이지](https://user-images.githubusercontent.com/83929406/163544337-892266c5-ec50-4f59-80d6-f76eb218354c.gif)
+  
 </details>
 <details>
 <summary>마이페이지-회원정보수정</summary>
