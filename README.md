@@ -77,6 +77,12 @@ BUBLE(Buy Ur Best Limited Edition)은 감당 가능한 신발 한정판을 추�
 <br>
 <br>
 
+
+## App Link 
+
+http://buble-deploy.s3-website.ap-northeast-2.amazonaws.com/
+
+
 ## More Info
 
 📝 [Notion](https://garrulous-gander-3f2.notion.site/9-First-Project-6e129ca4f9e0468a9a429fc2048333e7) 
